@@ -1,5 +1,4 @@
-import {homeStore} from './home'
-import {itemsStore} from './items'
-import {detailStore} from './detail'
+import homeStore from './home';
+import newsStore from './news';
 
-export {homeStore, itemsStore, detailStore}
+export { homeStore, newsStore };

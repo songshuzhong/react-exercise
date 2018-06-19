@@ -1,22 +1,24 @@
-import {observable, action} from 'mobx';
+import { observable, action } from 'mobx';
 
 class HomeStore {
   @observable text;
-  @observable num;
+  @observable number;
 
   constructor() {
-    this.num = 0
-    this.text = 'Hello Word!'
+    this.text = 'hello mobx-react';
+    this.number = 0;
   }
 
-  @action plus = () => {
-    this.num = ++this.num
+  @action
+  minus() {
+    this.number = --this.number;
   }
-  @action minus = () => {
-    this.num = --this.num
+
+  @action
+  plus() {
+    this.number = ++this.number;
   }
 }
 
-const homeStore = new HomeStore()
-
-export {homeStore}
+const homeStore = new HomeStore();
+export default homeStore;

@@ -1,19 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-
+import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 
-import App from './pages';
 import * as stores from './store';
+import App from './components/App';
 
-import './assets/styles/main.less';
+import './assist/styles/main.less';
 
-ReactDOM.render(
+useStrict( true );
+render(
   <Provider store={ stores }>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById( 'root' ),
+  document.getElementById( 'root' )
 );

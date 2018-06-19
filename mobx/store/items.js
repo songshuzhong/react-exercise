@@ -8,8 +8,8 @@ class ItemsStore {
   @observable dataTime;
 
   constructor() {
-    this.items = []
-    this.dataTime = ''
+    this.items = [];
+    this.dataTime = '';
   }
 
   @computed get total() {
@@ -18,31 +18,26 @@ class ItemsStore {
 
   @action
   fetchData = (time) => {
-    fetch(Config.YAHOO + Config.API + time + Config.YAHOO_SUFFIX).then(
-
-      action('fetchRes', res => {
-        return res.json()
-      })).then(
-
-      action('fetchSuccess', data => {
-        this.items = data.query.results.json.stories;
-        this.dataTime = data.query.results.json.date;
-
-      })).catch(
-
-      action('fetchError', e => {
-        console.log(e.message)
-      }))
-  }
+    fetch( Config.YAHOO + Config.API + time + Config.YAHOO_SUFFIX )
+      .then(
+        action( 'fetchRes', res => {
+          return res.json()
+        } ) ).then(
+        action( 'fetchSuccess', data => {
+          this.items = data.query.results.json.stories;
+          this.dataTime = data.query.results.json.date;
+        } ) ).catch(
+          action('fetchError', e => {
+            console.log(e.message)
+        } )
+      ) };
 
   @action
-  emptyData = () => {
-    this.items = []
-  }
+  emptyData = () => { this.items = [] };
 
- defaultDate = autorun((e) => this.fetchData(getDate()))
+ defaultDate = autorun( ( e ) => this.fetchData( getDate() ) )
 }
 
-const itemsStore = new ItemsStore()
+const itemsStore = new ItemsStore();
 
 export {itemsStore}

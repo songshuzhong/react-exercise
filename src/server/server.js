@@ -50,7 +50,7 @@ let userRouter = require( './router/user' );
 let messageRouter = require( './router/message' );
 let superMsgBoard = require( './router/superMsgBoard' );
 
-server.all( '*', ( req, res, next ) => { req.headers.accept.includes( 'html' )? res.render( 'index' ): next() } );
+server.all( '*', ( req, res, next ) => { req.headers.accept?req.headers.accept.includes( 'html' )? res.render( 'index' ): next(): null } );
 server.use( '/users', userRouter );
 server.use( '/messages', messageRouter );
 server.use( '/v1/msgBoard', multipartMiddleware, superMsgBoard );

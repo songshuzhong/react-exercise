@@ -1,19 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
 
-import TodoList from './components/todoList';
-import TodoListModel from './models/todoList';
+import * as stores from './store';
+import App from './components/App';
 
-const store = new TodoListModel();
+import './assist/styles/main.less';
 
+useStrict( true );
 render(
-  <TodoList store={ store } />,
+  <Provider store={ stores }>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById( 'root' )
 );
-
-store.addTodo( 'number one' );
-store.addTodo( 'number two' );
-
-setTimeout( () => { store.addTodo( 'number three async' ) }, 2000 );
-
-window.store = store;

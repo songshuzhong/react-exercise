@@ -9,13 +9,11 @@ class HomeStore {
     this.number = 0;
   }
 
-  @action
-  minus() {
+  @action minus = () => {
     this.number = --this.number;
   }
 
-  @action
-  plus() {
+  @action plus = () => {
     this.number = ++this.number;
   }
 }

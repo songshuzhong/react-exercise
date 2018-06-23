@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import { observer, inject } from 'mobx-react';
 
-@observer
 @inject( 'store' )
-class Home extends PureComponent {
+@observer
+class Home extends Component {
   constructor( props ) {
     super( props );
     this.store = this.props.store.homeStore;
@@ -22,14 +22,14 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { text, num } = this.store;
+    const { text, number } = this.store;
     return(
       <div>
         <div className='index-warp'><span>{ text }</span></div>
         <div style={{textAlign: 'center'}}>
-          <span style={{background: '#666', color: '#fff', padding: '5px'}} onClick={this.minusHandle.bind(this)}>-</span>
-          <span>{ num }</span>
-          <span style={{background: '#666', color: '#fff', padding: '5px'}} onClick={this.plusHandle.bind(this)}>+</span>
+          <span style={{background: '#666', color: '#fff', padding: '5px'}} onClick={ this.minusHandle.bind( this ) }>-</span>
+          <span>{ number }</span>
+          <span style={{background: '#666', color: '#fff', padding: '5px'}} onClick={ this.plusHandle.bind( this ) }>+</span>
         </div>
       </div>
     );

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 
 import { observer, inject } from 'mobx-react';
 
+import Room from '../components/room';
+
 @observer
 @inject( 'store' )
 class Home extends PureComponent {
@@ -11,6 +13,18 @@ class Home extends PureComponent {
 
     this.minus = this.store.minus;
     this.plus = this.store.plus;
+  }
+
+  componentWillMount() {
+    console.log( 'home is going to mount.');
+  }
+
+  componentDidMount() {
+    console.log( 'home is mounted.');
+  }
+
+  componentWillUnmount() {
+    console.log( 'home is going to unmount.');
   }
 
   minusHandle() {
@@ -31,6 +45,7 @@ class Home extends PureComponent {
           <span>{ num }</span>
           <span style={{background: '#666', color: '#fff', padding: '5px'}} onClick={this.plusHandle.bind(this)}>+</span>
         </div>
+        <Room />
       </div>
     );
   }

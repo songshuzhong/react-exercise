@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { inject, observer } from 'mobx-react';
@@ -7,9 +7,9 @@ import { Row, Col, Spin, Button, DatePicker } from 'antd';
 
 import { subString, timeClear } from '../../utils/getDate'
 
-@observer
 @inject( 'store' )
-class News extends PureComponent {
+@observer
+class News extends Component {
   constructor( props ) {
     super( props );
     this.store = this.props.store.newsStore;
@@ -35,7 +35,7 @@ class News extends PureComponent {
             { total > 0
               ? <Row gutter={16}>
                 { newsList.map( ( e, index ) => <Col className="gutter-row" span={ 6 } key={ index }>
-                  <Link className="item" to={ 'news/' + e.id }>
+                  <Link className="item" to={ 'details/' + e.id }>
                     <img src={ e.images } role="presentation"/>
                     <p>{ e.title }</p>
                     <sub>{ subString( newsDate ) }</sub>

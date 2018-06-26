@@ -1,23 +1,15 @@
-import React, { PureComponent } from 'react';
-
-import { Switch, Route } from 'react-router-dom';
-
-import asyncComponent from '../../utils/asyncComponent';
+import React, { Component } from 'react';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Main from '../routers/config';
 
-export default class App extends PureComponent {
+export default class App extends Component {
   render() {
     return (
       <div className='main'>
         <Header { ...this.props.location }/>
-        <Switch>
-          <Route exact path='/' component={ asyncComponent( () => import('./home') ) }/>
-          <Route exact path='/home' component={ asyncComponent( () => import('./home') ) }/>
-          <Route exact path='/news' component={ asyncComponent( () => import('./news') ) }/>
-          <Route exact path='/about' component={ asyncComponent( () => import('./about') ) }/>
-        </Switch>
+        <Main />
         <Footer/>
       </div>
     );

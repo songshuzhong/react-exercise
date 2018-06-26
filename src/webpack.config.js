@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 module.exports = {
   entry: {
     vendor: [ 'react', 'react-dom', 'react-router', 'react-router-dom' ],
-    app: [ './mobx/index.js', 'webpack-hot-middleware/client?reload=true' ]
+    app: [ './src/client/scripts/index.js', 'webpack-hot-middleware/client?reload=true' ]
   },
   output: {
     pathinfo: true,

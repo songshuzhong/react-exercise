@@ -12,17 +12,14 @@ class NewsStore {
     this.newsDate = '';
   }
 
-  @computed
-  get total() {
+  @computed get total() {
     return this.newsList.length;
   }
 
   @action
   emptyData = () => {
     this.newsList = [];
-  }
-
-  defaultData = autorun( () => this.fetchRemoteData( getDate() ) );
+  };
 
   @action
   fetchRemoteData = ( time ) => {
@@ -33,12 +30,13 @@ class NewsStore {
         } ) )
       .then(
         action( 'fetchSuccess', data => {
-          this.items = data.query.results.json.stories;
+          this.newsList = data.query.results.json.stories;
           this.newsDate = data.query.results.json.date;
         } ) )
       .catch( action( 'fetchError', err => { console.log( err ); } ) )
-  }
+  };
 
+  defaultData = autorun( () => this.fetchRemoteData( getDate() ) );
 
 }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      grid-template-rows: 30px 560px auto;
+      grid-template-areas: "header header" "nav content" "footer footer";
+    }
+    .item-header {
+      grid-area: header;
+    }
+    .item-nav {
+      grid-area: nav;
+    }
+    .item-content {
+      grid-area: content;
+    }
+    .item-footer {
+      grid-area: footer;
+    }
+    .item-content:before {
+      width: 100%;
+      height: 2px;
+      position: fixed;
+      background-color: grey;
+      content: "";
+    }
+    .item-nav:before {
+      width: 100%;
+      height: 2px;
+      position: fixed;
+      background-color: grey;
+      content: "";
+    }
+    .item-content:after {
+      width: 2px;
+      height: 100%;
+      position: fixed;
+      background-color: grey;
+      content: "";
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="item-header"></div>
+    <div class="item-nav"></div>
+    <div class="item-content"></div>
+    <div class="item-footer"></div>
+  </div>
+</body>
+</html>

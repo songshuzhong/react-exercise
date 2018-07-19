@@ -3,7 +3,7 @@ import Loadable from 'react-loadable';
 
 const Loading = ( props ) => {
   console.log( props );
-  return <div>Loading......</div>
+  return <div>{ JSON.stringify( props ) }</div>
 };
 
 const LoadableHome = Loadable( {
@@ -16,6 +16,11 @@ const LoadableAbout = Loadable( {
   loading: Loading
 } );
 
+const LoadableApp = Loadable( {
+  loader: () => import( '../pages/app' ),
+  loading: Loading
+} );
+
 const routes = [
   {
     path: '/',
@@ -23,12 +28,13 @@ const routes = [
     component: LoadableHome
   },{
     path: '/home',
-    exact: true,
     component: LoadableHome
   },{
     path: '/about',
-    exact: true,
     component: LoadableAbout
+  },{
+    path: '/app',
+    component: LoadableApp
   }
 ];
 

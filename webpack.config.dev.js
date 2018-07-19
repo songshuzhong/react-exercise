@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const { ReactLoadablePlugin } = require( 'react-loadable/webpack' ) ;
 
 const rootPath = path.join( __dirname );
 
@@ -14,13 +15,13 @@ const devConfig = {
     vendors: [ 'react', 'react-dom', 'react-loadable', 'react-router', 'react-router-dom' ]
   },
   output: {
-    filename: '[name].[hash:8].js',
-    path: path.resolve( rootPath, './dist/client' ),
+    filename: 'js/[name].[hash:8].js',
+    path: path.resolve( rootPath, './dist' ),
     publicPath: '/',
-    chunkFilename: '[name]-[hash:8].js'
+    chunkFilename: 'js/[name]-[hash:8].js'
   },
   resolve: {
-    extensions: [ 'js', 'jsx', 'css', 'less', 'scss', 'png', 'jpg'],
+    extensions: [ '.js', '.jsx', 'css', '.less', '.scss', '.png', '.jpg'],
     modules: [ path.resolve( rootPath, 'src' ), 'node_modules' ]
   },
   devServer: {
@@ -34,39 +35,33 @@ const devConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: path.resolve( rootPath, 'src' ),
+        include: path.resolve( rootPath, 'src/client' ),
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ 'env', 'react', 'stage-0' ],
-            plugins: [ 'transform-runtime', 'add-module-exports' ],
+            presets: [ 'env', 'es2015', 'react' ],
+            plugins: [
+              'babel-plugin-transform-object-rest-spread',
+              'syntax-dynamic-import',
+              'transform-runtime',
+              'add-module-exports'
+            ],
             cacheDirectory: true
           }
         }
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.css$/,
         exclude: /node_modules/,
-        include: path.resolve( rootPath, 'src' ),
+        include: path.resolve( rootPath, 'src/client/styles' ),
         use: ExtractTextPlugin.extract( {
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
               options: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [ require( 'autoprefixer' )( { browsers: 'last 5 versions' } ) ],
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'sass-loader',
-              options: {
+                importLoaders: 1,
+                minimize: true,
                 sourceMap: true
               }
             }
@@ -88,12 +83,15 @@ const devConfig = {
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new CopyWebpackPlugin( [ { from: 'favicon.ico' } ] ),
+    new CopyWebpackPlugin( [ { from: './client/favicon.ico' } ] ),
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin( { summary: false } ),
-    new ExtractTextPlugin( { filename: 'style.[hash].css' } ),
+    new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css' } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
-    new webpack.optimize.CommonChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
-    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './template.ejs' } )
+    new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
+    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
+    new ReactLoadablePlugin( { filename: path.join( rootPath, './dist/react-loadable.json' ) } ),
   ]
 };
+
+module.exports = devConfig;

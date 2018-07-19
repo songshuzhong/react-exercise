@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Home extends Component {
+class App extends Component {
   constructor( props ) {
     super( props );
   }
@@ -9,11 +9,11 @@ class Home extends Component {
   render() {
     return(
       <div>
-        <Link to="/about">THIS IS HOME HOME.</Link>
+        <Link to="/home">THIS IS APP PAGE.</Link>
       </div>
     );
   }
 }
 
-export { Home };
-export default Home;
+export { App };
+export default App;

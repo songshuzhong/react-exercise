@@ -3,54 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script type="text/javascript" src="jquery-2.0.0.min.js"></script>
   <style>
-    .grid-container {
-      display: grid;
-      grid-template-columns: 20% 80%;
-      grid-template-rows: 30px 560px auto;
-      grid-template-areas: "header header" "nav content" "footer footer";
+    .item-static {
+      width: 150px;
+      height: 300px;
+      top: 0;
+      right: -150px;
+      position: absolute;
+      box-sizing: border-box;
+      background-color: black;
+      opacity: 0;
+      transition: all .2s ease-in;
     }
-    .item-header {
-      grid-area: header;
-    }
-    .item-nav {
-      grid-area: nav;
-    }
-    .item-content {
-      grid-area: content;
-    }
-    .item-footer {
-      grid-area: footer;
-    }
-    .item-content:before {
-      width: 100%;
-      height: 2px;
-      position: fixed;
-      background-color: grey;
-      content: "";
-    }
-    .item-nav:before {
-      width: 100%;
-      height: 2px;
-      position: fixed;
-      background-color: grey;
-      content: "";
-    }
-    .item-content:after {
-      width: 2px;
-      height: 100%;
-      position: fixed;
-      background-color: grey;
-      content: "";
+    .item-active {
+      width: 150px;
+      height: 300px;
+      top: 0;
+      position: absolute;
+      box-sizing: border-box;
+      background-color: black;
+      right: 0;
+      z-index: 10;
+      opacity: 0.5;
     }
   </style>
 </head>
 <body>
-  <div class="grid-container">
-    <div class="item-header"></div>
-    <div class="item-nav"></div>
-    <div class="item-content"></div>
-    <div class="item-footer"></div>
+  <div style="width: 100%; height: 500px; z-index: 100;">
+    <div id="target" style="width: 300px; height: 300px; position: relative; background-color: green; overflow: hidden; z-index: 0">
+      <span>adsf</span>
+      <div class="item-static">
+        <span>rename</span>
+        <span>delete</span>
+      </div>
+    </div>
   </div>
+  <script>
+    $( '#target' ).hover( function( e ) {
+      $( e.target ).children( '.item-static' ).addClass( 'item-active' );
+    } );
+  </script>
 </body>
 </html>

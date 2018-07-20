@@ -5,10 +5,10 @@ import Loadable from 'react-loadable'
 
 import App from '../../client/index';
 
-const clientSideRender = ( modules ) => (
+const clientSideRender = ( modules = [] ) => (
   Loadable.preloadReady().then( () => {
     hydrate(
-      <Loadable.Capture report={ moduleName => { console.log( moduleName ); modules.push( moduleName ) } }>
+      <Loadable.Capture report={ moduleName => { modules.push( moduleName ) } }>
         <BrowserRouter>
           <App />
         </BrowserRouter>

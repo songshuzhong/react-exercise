@@ -46,7 +46,8 @@ const devConfig = {
               'babel-plugin-transform-object-rest-spread',
               'syntax-dynamic-import',
               'transform-runtime',
-              'add-module-exports'
+              'add-module-exports',
+              'react-loadable/babel'
             ],
             cacheDirectory: true
           }

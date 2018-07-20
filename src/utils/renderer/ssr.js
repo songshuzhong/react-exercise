@@ -1,9 +1,9 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter, Route } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 
-import App from '../../client';
+import App from '../../client/index';
 
 const serverSideRender = ( ctx, modules ) => {
   return renderToString(

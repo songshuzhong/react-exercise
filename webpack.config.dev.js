@@ -1,10 +1,9 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-const { ReactLoadablePlugin } = require( 'react-loadable/webpack' ) ;
 
 const rootPath = path.join( __dirname );
 
@@ -92,8 +91,7 @@ const devConfig = {
     new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css', allChunks: true } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
-    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
-    new ReactLoadablePlugin( { filename: path.join( rootPath, './dist/react-loadable.json' ) } ),
+    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } )
   ]
 };
 

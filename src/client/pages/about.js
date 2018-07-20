@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+const page = {
+  title: 'EPM-UI'
+};
+
 class About extends Component {
   constructor( props ) {
     super( props );
@@ -13,6 +17,8 @@ class About extends Component {
     );
   }
 }
+
+About.page = page;
 
 export { About };
 export default About;

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "webpack": "webpack --config ./webpack.config.dev.js",
+    "webpack": "webpack --config ./webpack.config.pro.js",
     "start": "node ./src/server/app.js"
    },
   "devDependencies": {

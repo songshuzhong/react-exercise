@@ -1,14 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import React from 'react';
-import { StaticRouter , Route } from 'react-router-dom';
-import { renderToString } from 'react-dom/server';
-import Loadable from 'react-loadable';
-import { getBundles } from 'react-loadable/webpack';
-import stats from '../../dist/react-loadable.json';
 import Helmet from 'react-helmet';
 import { matchPath } from 'react-router-dom';
+import { getBundles } from 'react-loadable/webpack';
+import serverSideRender from '../utils/renderer/ssr';
 
+import stats from '../../dist/react-loadable.json';
 import routes from '../client/routers/index';
 
 const createTags = ( modules ) => {
@@ -38,17 +35,7 @@ const getMatch = ( routesArray, url ) => {
 const makeup = ( ctx, html ) => {
   let initState = { key: 'initState' };
   let modules = [];
-  let rootString = renderToString(
-    <Loadable.Capture report={ moduleName => modules.push( moduleName ) }>
-      <StaticRouter location={ ctx.req.url } context={ { basename: '/' } }>
-        <div>
-          {
-            routes.map( route => <Route key={ route.path } exact={ route.exact } path={ route.path } component={ route.component } /> )
-          }
-        </div>
-      </StaticRouter >
-    </Loadable.Capture>
-  );
+  let rootString = serverSideRender( ctx, modules );
   let { scripts, styles } = createTags( modules );
   let helmet = Helmet.renderStatic();
 

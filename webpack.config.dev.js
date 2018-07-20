@@ -11,14 +11,16 @@ const rootPath = path.join( __dirname );
 const devConfig = {
   context: path.join( rootPath, './src' ),
   entry: {
-    client: './client/index.js',
+    client: './utils/renderer/csr.js',
     vendors: [ 'react', 'react-dom', 'react-loadable', 'react-router', 'react-router-dom' ]
   },
   output: {
     filename: 'js/[name].[hash:8].js',
     path: path.resolve( rootPath, './dist' ),
     publicPath: '/',
-    chunkFilename: 'js/[name]-[hash:8].js'
+    chunkFilename: 'js/[name]-[hash:8].js',
+    library: 'clientSideRender',
+    libraryTarget: 'umd'
   },
   resolve: {
     extensions: [ '.js', '.jsx', 'css', '.less', '.scss', '.png', '.jpg'],
@@ -35,7 +37,7 @@ const devConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        include: path.resolve( rootPath, 'src/client' ),
+        include: path.resolve( rootPath, 'src' ),
         use: {
           loader: 'babel-loader',
           options: {
@@ -86,7 +88,7 @@ const devConfig = {
     new CopyWebpackPlugin( [ { from: './client/favicon.ico' } ] ),
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin( { summary: false } ),
-    new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css' } ),
+    new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css', allChunks: true } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
     new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),

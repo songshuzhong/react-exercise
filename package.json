@@ -2,9 +2,14 @@
   "name": "loadable",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "webpack": "webpack --config ./webpack.config.dev.js",
+    "start": "node ./src/server/app.js"
+   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -21,22 +26,17 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-loadable": "^5.4.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "style-loader": "^0.21.0",
     "webpack": "^3.10.0"
   },
-  "scripts": {
-    "webpack": "webpack --config ./webpack.config.dev.js",
-    "start": "node ./src/server/app.js"
-  },
   "dependencies": {
-    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "koa": "^2.5.2",
     "koa-static-cache": "^5.1.2",
+    "react-loadable": "^5.3.1",
     "react-helmet": "^5.2.0",
     "react-router-config": "^1.0.0-beta.4"
   }

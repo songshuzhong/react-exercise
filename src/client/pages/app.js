@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return(
       <div>
-        <Link to="/home">THIS IS APP PAGE.</Link>
+        <Link to="/">THIS IS APP PAGE.</Link>
       </div>
     );
   }

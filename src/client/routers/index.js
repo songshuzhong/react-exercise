@@ -2,7 +2,6 @@ import React from 'react';
 import Loadable from 'react-loadable';
 
 const Loading = ( props ) => {
-  console.log( props );
   return <div>{ JSON.stringify( props ) }</div>
 };
 
@@ -25,9 +24,6 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: LoadableHome
-  },{
-    path: '/home',
     component: LoadableHome
   },{
     path: '/about',

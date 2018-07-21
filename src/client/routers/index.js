@@ -1,9 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 
-const Loading = ( props ) => {
-  return <div>{ JSON.stringify( props ) }</div>
-};
+const Loading = ( props ) => <div />;
 
 const LoadableHome = Loadable( {
   loader: () => import( '../pages/home' ),

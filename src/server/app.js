@@ -1,8 +1,8 @@
 require( 'babel-polyfill' );
 require( '../utils/ignore' )();
 require( 'babel-register' )( {
-  presets: [ 'env', 'react', 'stage-0' ],
-  plugins: [ 'react-loadable/babel', 'syntax-dynamic-import', 'dynamic-import-node' ]
+  presets: [ 'env', 'es2015', 'react', 'stage-0' ],
+  plugins: [ 'transform-decorators-legacy', 'react-loadable/babel', 'syntax-dynamic-import', 'dynamic-import-node' ]
 } );
 const Koa = require( 'koa' );
 const path = require( 'path' );

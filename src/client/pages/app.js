@@ -11,12 +11,12 @@ class App extends Component {
 
   render() {
     return(
-      <div>
-        <Helmet>
+      [
+        <Helmet key={ 1 }>
           <title>App</title>
-        </Helmet>
-        <Link to="/">THIS IS APP PAGE.</Link>
-      </div>
+        </Helmet>,
+        <Link key={ 2 } to="/">THIS IS APP PAGE.</Link>
+      ]
     );
   }
 }

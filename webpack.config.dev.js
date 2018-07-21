@@ -40,8 +40,9 @@ const devConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ 'env', 'es2015', 'react' ],
+            presets: [ 'env', 'es2015', 'react', 'stage-0' ],
             plugins: [
+              'transform-decorators-legacy',
               'babel-plugin-transform-object-rest-spread',
               'syntax-dynamic-import',
               'transform-runtime',

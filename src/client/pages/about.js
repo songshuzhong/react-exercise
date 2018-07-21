@@ -9,12 +9,12 @@ class About extends Component {
 
   render() {
     return(
-      <div>
-        <Helmet>
+      [
+        <Helmet key={ 1 }>
           <title>About</title>
-        </Helmet>
-        <Link to="/app">THIS IS ABOUT PAGE.</Link>
-      </div>
+        </Helmet>,
+        <Link key={ 2 } to="/app">THIS IS ABOUT PAGE.</Link>
+      ]
     );
   }
 }

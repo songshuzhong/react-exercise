@@ -9,7 +9,7 @@ const path = require( 'path' );
 const staticCache = require( 'koa-static-cache' );
 const Loadable = require( 'react-loadable' );
 
-const createApp = require( './createApp' ).default;
+const createApp = require( '../utils/engines/render-engine-for-koa' ).default;
 
 const app = new Koa();
 
@@ -22,7 +22,5 @@ app.use( createApp );
 
 console.log( 'the server is running on 3000!' );
 
-Loadable.preloadAll().then( () => {
-  app.listen( 3000 );
-} );
+Loadable.preloadAll().then( () => { app.listen( 3000 ); } );
 

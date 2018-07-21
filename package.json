@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build:prod": "webpack --config ./webpack.config.pro.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --hotOnly --progress --config ./webpack.config.dev.js",
+    "build": "webpack --config ./webpack.config.pro.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --hotOnly --config ./webpack.config.dev.js",
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {

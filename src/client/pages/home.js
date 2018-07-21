@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import '../styles/home.css';
 
@@ -11,6 +12,9 @@ class Home extends Component {
   render() {
     return(
       <div>
+        <Helmet>
+          <title>Home</title>
+        </Helmet>
         <Link to="/about">THIS IS HOME HOME.</Link>
       </div>
     );

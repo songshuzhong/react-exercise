@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-const page = {
-  title: 'EPM-UI'
-};
+import Helmet from 'react-helmet';
 
 class About extends Component {
   constructor( props ) {
@@ -13,12 +10,14 @@ class About extends Component {
   render() {
     return(
       <div>
-        <Link to="/app">THIS IS ABOUT PAGE.</Link></div>
+        <Helmet>
+          <title>About</title>
+        </Helmet>
+        <Link to="/app">THIS IS ABOUT PAGE.</Link>
+      </div>
     );
   }
 }
-
-About.page = page;
 
 export { About };
 export default About;

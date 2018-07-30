@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
+import '../styles/about.css'
+
 class About extends Component {
   constructor( props ) {
     super( props );
   }
 
   render() {
-    return(
-      <div>
-        <Helmet>
-          <title>About</title>
-        </Helmet>
-        <Link to="/app">THIS IS ABOUT PAGE.</Link>
-      </div>
-    );
+    return( [
+      <Helmet key='helmet'>
+        <title>About</title>
+      </Helmet>,
+      <Link key='link' to="/apps">THIS IS ABOUT PAGE.</Link>
+    ] );
   }
 }
 

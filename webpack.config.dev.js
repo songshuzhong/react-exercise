@@ -4,7 +4,8 @@ const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-
+const ManifestPlugin = require( 'webpack-manifest-plugin' );
+const SWPrecacheWebpackPlugin = require( 'sw-precache-webpack-plugin' );
 const rootPath = path.join( __dirname );
 
 const devConfig = {
@@ -91,7 +92,25 @@ const devConfig = {
     new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css', allChunks: true } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
-    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } )
+    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
+    new ManifestPlugin( { fileName: 'asset-manifest.json' } ),
+    new SWPrecacheWebpackPlugin( {
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      logger( message ) {
+        if ( message.indexOf( 'Total precache size is' ) === 0 ) {
+          return;
+        }
+        if ( message.indexOf( 'Skipping static resource' ) === 0 ) {
+          return;
+        }
+        console.log( message );
+      },
+      minify: true,
+      navigateFallback: path.resolve( rootPath, './dist/index.html' ),
+      navigateFallbackWhitelist: [/^(?!\/__).*/],
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }),
   ]
 };
 

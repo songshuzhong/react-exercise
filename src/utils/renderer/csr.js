@@ -3,6 +3,7 @@ import { hydrate } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Loadable from 'react-loadable'
 
+import registerServiceWorker from '../serviceWorker';
 import App from '../../client/index';
 
 const clientSideRender = ( modules = [] ) => (
@@ -15,7 +16,8 @@ const clientSideRender = ( modules = [] ) => (
       </Loadable.Capture>,
       document.getElementById( 'root' ),
       () => document.body.removeChild( document.body.lastElementChild )
-    )
+    );
+    registerServiceWorker();
   } )
 );
 

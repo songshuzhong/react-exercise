@@ -1,14 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import routes from './routers/index';
+import NoMatch from './components/noMatch';
 
 const app = () => (
-  <div>
+  <Switch>
     {
       routes.map( route => <Route key={ route.path } exact={ route.exact } path={ route.path } component={ route.component } /> )
     }
-  </div>
+    <Route component={ NoMatch } />
+  </Switch>
 );
 
 export default app;

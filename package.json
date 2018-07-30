@@ -8,6 +8,7 @@
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {
+    "autoprefixer": "^9.0.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -21,8 +22,16 @@
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
+    "epm-ui": "^0.4.42-alpha.1",
+    "epm-ui-css": "^0.5.8-alpha.1",
+    "extract-css-chunks-webpack-plugin": "^2.0.18",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "flush-css-chunks-webpack-plugin": "^0.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "less-loader": "^4.1.0",
+    "postcss-flexbugs-fixes": "^4.0.0",
+    "postcss-loader": "^2.1.6",
     "progress-bar-webpack-plugin": "^1.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
@@ -30,16 +39,20 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "style-loader": "^0.21.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "url-loader": "^1.0.1",
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
+    "css-split-webpack-plugin": "^0.2.5",
     "koa": "^2.5.2",
     "koa-static-cache": "^5.1.2",
-    "react-loadable": "^5.3.1",
     "react-helmet": "^5.2.0",
-    "react-router-config": "^1.0.0-beta.4"
+    "react-loadable": "^5.3.1",
+    "react-router-config": "^1.0.0-beta.4",
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "webpack-manifest-plugin": "^2.0.3"
   }
 }

@@ -4,14 +4,17 @@ import ErrorCatch from './errorCatch';
 
 const Loading = ( props ) => <div />;
 
-const LoadableHome = Loadable( {
-  loader: () => import( '../pages/home' ),
-  loading: Loading
-} );
-
-const asyncComponent = ( component ) => Loadable( {
-  loader: <ErrorCatch>{ () => import( '../pages/home' ) }</ErrorCatch>,
-  loading: Loading
+const asyncComponent = ( loader ) => Loadable( {
+  loader: loader,
+  loading: Loading,
+  render( loaded, props ) {
+    let Component = loaded.default;
+    return (
+      <ErrorCatch>
+        <Component { ...props } />
+      </ErrorCatch>
+    );
+  }
 } );
 
 export { asyncComponent };

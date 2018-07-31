@@ -1,5 +1,6 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
+const autoprefixer = require( 'autoprefixer' );
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
@@ -57,9 +58,7 @@ const devConfig = {
         }
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        include: path.resolve( rootPath, 'src/client/styles' ),
+        test: /\.(css)$/,
         use: ExtractCssChunksPlugin.extract( {
           fallback: 'style-loader',
           use: [
@@ -69,6 +68,22 @@ const devConfig = {
                 importLoaders: 1,
                 minimize: true,
                 sourceMap: true
+              }
+            },{
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require( 'postcss-flexbugs-fixes' ),
+                  autoprefixer( {
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9',
+                    ],
+                    flexbox: 'no-2009'
+                  } )
+                ]
               }
             }
           ]

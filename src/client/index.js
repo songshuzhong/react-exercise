@@ -32,9 +32,7 @@ class Application extends Component {
   render() {
     return (
       <Switch>
-        {
-          routes.map( route => <Route key={ route.path } exact={ route.exact } path={ route.path } component={ route.component } /> )
-        }
+        { routes.map( route => <Route key={ route.path } exact={ route.exact } path={ route.path } component={ route.component } /> ) }
         <Route component={ NoMatch } />
       </Switch>
     );

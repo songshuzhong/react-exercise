@@ -14,7 +14,7 @@ class About extends Component {
       <Helmet key='helmet'>
         <title>About</title>
       </Helmet>,
-      <Link key='link' to="/apps">THIS IS ABOUT PAGE.</Link>
+      <Link key='link' to="/app">THIS IS ABOUT PAGE.</Link>
     ] );
   }
 }

@@ -4,11 +4,9 @@ const autoprefixer = require( 'autoprefixer' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const { ReactLoadablePlugin } = require( 'react-loadable/webpack' ) ;
 const ManifestPlugin = require( 'webpack-manifest-plugin' );
 const SWPrecacheWebpackPlugin = require( 'sw-precache-webpack-plugin' );
-
 const ExtractCssChunksPlugin = require( 'extract-css-chunks-webpack-plugin' );
 const FlushCssChunksPlugin = require( 'flush-css-chunks-webpack-plugin' );
 
@@ -45,6 +43,7 @@ const proConfig = {
             plugins: [
               'babel-plugin-transform-object-rest-spread',
               'syntax-dynamic-import',
+              'dual-import',
               'transform-runtime',
               'add-module-exports',
               'react-loadable/babel'
@@ -102,8 +101,7 @@ const proConfig = {
     new CopyWebpackPlugin( [ { from: './client/favicon.ico' } ] ),
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin( { summary: false } ),
-    //new ExtractTextPlugin( { filename: 'cs/[name].[hash:8].css', allChunks: true } ),
-    new ExtractCssChunksPlugin( { filename: 'cs/[name].[hash:8].css' } ),
+    new ExtractCssChunksPlugin( { filename: 'cs/[name]-[hash:8].css' } ),
     new FlushCssChunksPlugin( { entryOnly: true } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),

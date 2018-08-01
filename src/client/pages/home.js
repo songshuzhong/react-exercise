@@ -10,14 +10,12 @@ class Home extends Component {
   }
 
   render() {
-    return(
-      <div>
-        <Helmet>
-          <title>Home</title>
-        </Helmet>
-        <Link to="/about">THIS IS HOME HOME.</Link>
-      </div>
-    );
+    return( [
+      <Helmet key='helmet'>
+        <title>Home</title>
+      </Helmet>,
+      <Link key='link' to="/about">THIS IS HOME HOME.</Link>
+    ] );
   }
 }
 

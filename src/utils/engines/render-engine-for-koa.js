@@ -11,7 +11,7 @@ import routes from '../../client/routers/index';
 
 const preparedHTML = ( data, { head, initialState, rootString, scripts, styles } ) => {
   data = data.replace( '<head>', `<head>${ head }\n${ styles }` );
-  data = data.replace( '<div id="root"></div>', `<div id='root'>${ rootString }</div>` );
+  data = data.replace( '<div id="root"></div>', `<div id="root">${ rootString }</div>` );
   data = data.replace( '</body>', `${ scripts.join( '\n' ) }\n</body>` );
 
   return data;

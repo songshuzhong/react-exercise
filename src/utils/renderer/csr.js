@@ -1,14 +1,13 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Loadable from 'react-loadable'
 
-import registerServiceWorker from '../serviceWorker';
 import App from '../../client/index';
 
 const clientSideRender = ( modules = [] ) => (
   Loadable.preloadReady().then( () => {
-    hydrate(
+    render(
       <Loadable.Capture report={ moduleName => { modules.push( moduleName ) } }>
         <BrowserRouter>
           <App />
@@ -17,7 +16,6 @@ const clientSideRender = ( modules = [] ) => (
       document.getElementById( 'root' ),
       () => document.body.removeChild( document.body.lastElementChild )
     );
-    registerServiceWorker();
   } )
 );
 

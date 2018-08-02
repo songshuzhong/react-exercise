@@ -1,10 +1,26 @@
-const users = [ '001', '002', '003', '004', '005' ];
+const products = require( '../service/products' );
+
+const APIError = require( '../../utils/restifyCreator' ).error;
 
 module.exports = {
-  'get /api/users': async( ctx, next ) => {
-    ctx.rest( { users: users } );
+  'GET /api/products': async ( ctx, next ) => {
+    ctx.rest( {
+      products: products.getProducts()
+    } );
   },
-  'delete /api/:user': async( ctx, next ) => {
-    ctx.rest( { user: users.indexOf( ctx.params.user ) } );
+
+  'POST /api/products': async ( ctx, next ) => {
+    let p = products.createProduct( .request.bctxody.name, ctx.request.body.manufacturer, parseFloat( ctx.request.body.price ) );
+    ctx.rest( p );
+  },
+
+  'DELETE /api/products/:id': async ( ctx, next ) => {
+    console.log(`delete product ${ctx.params.id}...`);
+    let p = products.deleteProduct( ctx.params.id );
+    if ( p ) {
+      ctx.rest( p );
+    } else {
+      throw new APIError( 'product:not_found', 'product not found by id.' );
+    }
   }
 };

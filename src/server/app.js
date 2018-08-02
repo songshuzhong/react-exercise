@@ -6,6 +6,8 @@ require( 'babel-register' )( {
 } );
 const Koa = require( 'koa' );
 const path = require( 'path' );
+const cors = require('koa2-cors');
+const bodyParser = require('koa-bodyparser');
 const staticCache = require( 'koa-static-cache' );
 const Loadable = require( 'react-loadable' );
 
@@ -20,6 +22,13 @@ app.use( staticCache( path.resolve( __dirname, '../../dist' ), {
   gzip: true
 } ) );
 
+app.use( staticCache( path.resolve( __dirname, '../../static' ), {
+  maxAge: 365 * 24 * 60 * 60,
+  gzip: true
+} ) );
+
+app.use( cors() );
+app.use( bodyParser() );
 app.use( rest.restify() );
 app.use( createApp );
 app.use( apiObservor() );

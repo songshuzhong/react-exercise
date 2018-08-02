@@ -32,7 +32,7 @@ const devConfig = {
   devServer: {
     contentBase: 'assets',
     hot: true,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   devtool: 'source-map',
   module: {

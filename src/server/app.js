@@ -27,8 +27,8 @@ app.use( staticCache( path.resolve( __dirname, '../../static' ), {
   gzip: true
 } ) );
 
-app.use( cors() );
 app.use( bodyParser() );
+app.use( cors() );
 app.use( rest.restify() );
 app.use( createApp );
 app.use( apiObservor() );

@@ -13,7 +13,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch( 'http://localhost:3000/api/products' ).then( res => res.json() ).then( products => this.setState( { products: products.products } ) );
+    fetch( 'http://localhost:3000/api/products' )
+      .then( res => res.json() )
+      .then( products => this.setState( { products: products.products } ) );
   }
 
   renderTable() {
@@ -22,8 +24,8 @@ class App extends Component {
         <img className="media-object" style={{width: '40px', height: '40px' }} src="http://localhost:3000/assets/icon.png" />
       </td>
       <td>
-        <h4 className="media-heading"></h4>
-        <p><span></span> <span><a>delete</a></span></p>
+        <h4 className="media-heading">${ product.name }</h4>
+        <p><span>${ product.manufacturer }</span> <span><a>delete</a></span></p>
       </td>
       <td>
         <p>¥ <span>${ product.price }</span></p>
@@ -32,7 +34,7 @@ class App extends Component {
     </tr> );
   }
 
-  handleSubmit() {
+  handleSubmit( e ) {
     let i = new FormData( this.productForm ).entries();
     let form = {};
     for ( let [ key, value ] of i ) {
@@ -41,12 +43,19 @@ class App extends Component {
       }
     }
 
-    fetch( 'http://localhost:3000/api/products', { method: 'post', body: JSON.stringify( form ) } )
+    fetch( 'http://localhost:3000/api/products', {
+        method: 'post',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+        body: JSON.stringify( form )
+    } )
       .then( res => res.json() )
-      .then( res => {
-        debugger;
-        alert( JSON.stringify( res ) );
+      .then( product => {
+        let products = this.state.products;
+
+        products.push( product );
+        this.setState( { products } );
       } );
+    e.preventDefault();
   }
 
   render() {
@@ -99,7 +108,7 @@ class App extends Component {
                       <input type="number" name="price" className="form-control" placeholder="Product price" />
                     </div>
                     <div className="form-group">
-                      <button name="button" onClick={ this.handleSubmit } className="btn btn-primary">Create</button>
+                      <button onClick={ this.handleSubmit } className="btn btn-primary">Create</button>
                     </div>
                   </form>
                 </div>

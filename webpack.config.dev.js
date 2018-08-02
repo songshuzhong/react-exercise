@@ -1,9 +1,13 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
+const autoprefixer = require( 'autoprefixer' );
 const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const ManifestPlugin = require( 'webpack-manifest-plugin' );
+const SWPrecacheWebpackPlugin = require( 'sw-precache-webpack-plugin' );
+const ExtractCssChunksPlugin = require( 'extract-css-chunks-webpack-plugin' );
+const FlushCssChunksPlugin = require( 'flush-css-chunks-webpack-plugin' );
 
 const rootPath = path.join( __dirname );
 
@@ -44,6 +48,7 @@ const devConfig = {
             plugins: [
               'babel-plugin-transform-object-rest-spread',
               'syntax-dynamic-import',
+              'dual-import',
               'transform-runtime',
               'add-module-exports',
               'react-loadable/babel'
@@ -53,10 +58,8 @@ const devConfig = {
         }
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        include: path.resolve( rootPath, 'src/client/styles' ),
-        use: ExtractTextPlugin.extract( {
+        test: /\.(css)$/,
+        use: ExtractCssChunksPlugin.extract( {
           fallback: 'style-loader',
           use: [
             {
@@ -65,6 +68,22 @@ const devConfig = {
                 importLoaders: 1,
                 minimize: true,
                 sourceMap: true
+              }
+            },{
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [
+                  require( 'postcss-flexbugs-fixes' ),
+                  autoprefixer( {
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9',
+                    ],
+                    flexbox: 'no-2009'
+                  } )
+                ]
               }
             }
           ]
@@ -88,10 +107,20 @@ const devConfig = {
     new CopyWebpackPlugin( [ { from: './client/favicon.ico' } ] ),
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin( { summary: false } ),
-    new ExtractTextPlugin( { filename: 'cs/style.[hash:8].css', allChunks: true } ),
+    new ExtractCssChunksPlugin( { filename: 'cs/[name]-[hash:8].css' } ),
+    new FlushCssChunksPlugin( { entryOnly: true } ),
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
-    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } )
+    new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
+    new ManifestPlugin( { fileName: 'asset-manifest.json' } ),
+    new SWPrecacheWebpackPlugin( {
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      minify: true,
+      navigateFallback: path.resolve( rootPath, './dist/index.html' ),
+      navigateFallbackWhitelist: [/^(?!\/__).*/],
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }),
   ]
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "loadable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack.config.pro.js",
@@ -37,9 +37,11 @@
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
     "koa-static-cache": "^5.1.2",
-    "react-loadable": "^5.3.1",
+    "path": "^0.12.7",
     "react-helmet": "^5.2.0",
+    "react-loadable": "^5.3.1",
     "react-router-config": "^1.0.0-beta.4"
   }
 }

@@ -1,34 +1,18 @@
 import React from 'react';
-import Loadable from 'react-loadable';
 
-const Loading = ( props ) => <div />;
-
-const LoadableHome = Loadable( {
-  loader: () => import( '../pages/home' ),
-  loading: Loading
-} );
-
-const LoadableAbout = Loadable( {
-  loader: () => import( '../pages/about' ),
-  loading: Loading
-} );
-
-const LoadableApp = Loadable( {
-  loader: () => import( '../pages/app' ),
-  loading: Loading
-} );
+import asyncComponent from '../components/asyncComponent';
 
 const routes = [
   {
     path: '/',
     exact: true,
-    component: LoadableHome
+    component: asyncComponent( () => import( '../pages/home' ) )
   },{
     path: '/about',
-    component: LoadableAbout
+    component: asyncComponent( () => import( '../pages/about' ) )
   },{
     path: '/app',
-    component: LoadableApp
+    component: asyncComponent( () => import( '../pages/app' ) )
   }
 ];
 

@@ -39,7 +39,7 @@ const proConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ 'env', 'es2015', 'react' ],
+            presets: [ 'env', 'es2015', 'stage-0', 'react' ],
             plugins: [
               'babel-plugin-transform-object-rest-spread',
               'syntax-dynamic-import',

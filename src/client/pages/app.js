@@ -25,7 +25,10 @@ class App extends Component {
       </td>
       <td>
         <h4 className="media-heading">${ product.name }</h4>
-        <p><span>${ product.manufacturer }</span> <span><a>delete</a></span></p>
+        <p>
+          <span>${ product.manufacturer }</span>
+          <span><a onClick={ this.handleDelete.bind( this, product.id ) }>delete</a></span>
+        </p>
       </td>
       <td>
         <p>¥ <span>${ product.price }</span></p>
@@ -45,7 +48,7 @@ class App extends Component {
 
     fetch( 'http://localhost:3000/api/products', {
         method: 'post',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify( form )
     } )
       .then( res => res.json() )
@@ -56,6 +59,17 @@ class App extends Component {
         this.setState( { products } );
       } );
     e.preventDefault();
+  }
+
+  handleDelete( id ) {
+    fetch( 'http://localhost:3000/api/products/' + id, {
+      method: 'delete',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    } )
+      .then( res => res.json() )
+      .then( product => {
+        console.log( product );
+      } )
   }
 
   render() {

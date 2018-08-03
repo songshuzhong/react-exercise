@@ -30,7 +30,7 @@ class About extends Component {
         <div style={ { height: '500px' } }>
           <BaiduMap ak='R1g6V9BEDdFBoOYlbOHPUXsHUaGjH2HL' getter={ ( getter ) => { this.toolsPromise = getter.toolsPromise } } />
         </div>
-        <Link to="/app">THIS IS ABOUT PAGE.</Link>
+        <Link to="/map">THIS IS ABOUT PAGE.</Link>
       </div>
     );
   }

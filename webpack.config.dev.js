@@ -112,15 +112,7 @@ const devConfig = {
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
     new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
-    new ManifestPlugin( { fileName: 'asset-manifest.json' } ),
-    new SWPrecacheWebpackPlugin( {
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      minify: true,
-      navigateFallback: path.resolve( rootPath, './dist/index.html' ),
-      navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
+    new ManifestPlugin( { fileName: 'asset-manifest.json' } )
   ]
 };
 

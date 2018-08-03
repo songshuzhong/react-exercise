@@ -107,15 +107,7 @@ const proConfig = {
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
     new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
     new ReactLoadablePlugin( { filename: path.join( rootPath, './dist/react-loadable.json' ) } ),
-    new ManifestPlugin( { fileName: 'asset-manifest.json' } ),
-    new SWPrecacheWebpackPlugin( {
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      minify: false,
-      navigateFallback: path.resolve( rootPath, './dist/index.html' ),
-      navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
+    new ManifestPlugin( { fileName: 'asset-manifest.json' } )
   ]
 };
 

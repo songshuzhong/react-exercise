@@ -46,6 +46,7 @@ class App extends Component {
       }
     }
 
+
     fetch( 'http://localhost:3000/api/products', {
         method: 'post',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },

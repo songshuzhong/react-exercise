@@ -5,7 +5,6 @@ const ProgressBarPlugin = require( 'progress-bar-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const ManifestPlugin = require( 'webpack-manifest-plugin' );
-const SWPrecacheWebpackPlugin = require( 'sw-precache-webpack-plugin' );
 const ExtractCssChunksPlugin = require( 'extract-css-chunks-webpack-plugin' );
 const FlushCssChunksPlugin = require( 'flush-css-chunks-webpack-plugin' );
 
@@ -30,9 +29,10 @@ const devConfig = {
     modules: [ path.resolve( rootPath, 'src' ), 'node_modules' ]
   },
   devServer: {
-    contentBase: 'assets',
+    contentBase: 'static/',
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    publicPath: '/'
   },
   devtool: 'source-map',
   module: {
@@ -112,15 +112,7 @@ const devConfig = {
     new webpack.DefinePlugin( { 'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV|| 'development' ) } ),
     new webpack.optimize.CommonsChunkPlugin( { name: [ 'vendors', 'manifest' ], minChunk: 2 } ),
     new HtmlWebpackPlugin( { title: 'test1', filename: 'index.html', template: './client/template.ejs' } ),
-    new ManifestPlugin( { fileName: 'asset-manifest.json' } ),
-    new SWPrecacheWebpackPlugin( {
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      minify: true,
-      navigateFallback: path.resolve( rootPath, './dist/index.html' ),
-      navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
+    new ManifestPlugin( { fileName: 'asset-manifest.json' } )
   ]
 };
 

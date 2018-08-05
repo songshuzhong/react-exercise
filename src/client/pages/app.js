@@ -21,7 +21,7 @@ class App extends Component {
   renderTable() {
     return this.state.products.map( ( product, index ) => <tr key={ index }>
       <td>
-        <img className="media-object" style={{width: '40px', height: '40px' }} src="http://localhost:3000/assets/icon.png" />
+        <img className="media-object" style={{width: '40px', height: '40px' }} src="/assets/icon.png" />
       </td>
       <td>
         <h4 className="media-heading">${ product.name }</h4>

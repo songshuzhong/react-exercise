@@ -13,7 +13,7 @@ class Home extends Component {
     return(
       <div>
         <Helmet>
-          <title>Home</title>
+          <title>Homes</title>
         </Helmet>
         <Link to="/about">THIS IS HOME HOME.</Link>
       </div>

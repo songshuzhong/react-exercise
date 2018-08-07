@@ -10,7 +10,7 @@ import state from '../../../dist/react-loadable';
 import routes from '../../client/routers/index';
 
 const preparedHTML = ( data, { head, initialState, rootString, scripts, styles } ) => {
-  data = data.replace( '<head>', `<head>${ head }\n${ styles }` );
+  data = data.replace( '<head>', `<head>${ head }\n${ styles.join( '\n' ) }` );
   data = data.replace( '<div id="root"></div>', `<div id='root'>${ rootString }</div>` );
   data = data.replace( '</body>', `${ scripts.join( '\n' ) }\n</body>` );
 
@@ -21,9 +21,10 @@ const createTags = ( modules, initialState ) => {
   let bundles = getBundles( state, modules );
   let styleFiles = bundles.filter( bundle => bundle.file.endsWith( '.css' ) );
   let scriptFiles = bundles.filter( bundle => bundle.file.endsWith( '.js' ) );
-  let styles = styleFiles.map( style => `<link rel='stylesheet' href='/${ style.file }'>` ).join( '\n' );
+  let styles = styleFiles.map( style => `<link rel='stylesheet' href='/${ style.file }'>` );
   let scripts = scriptFiles.map( script => `<script type='text/javascript' src='/${ script.file }'></script>` );
 
+  styles.push( `<link rel="manifest" href="/asset-manifest.json">` );
   scripts.push( `<script type='text/javascript'>window.__INITIAL_STATE__=${ JSON.stringify( initialState ) }</script>` );
   return { styles, scripts };
 };

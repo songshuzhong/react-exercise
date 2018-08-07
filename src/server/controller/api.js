@@ -10,7 +10,7 @@ module.exports = {
   },
 
   'POST /api/products': async ( ctx, next ) => {
-    let p = products.createProduct( ctx.request.bctxody.name, ctx.request.body.manufacturer, parseFloat( ctx.request.body.price ) );
+    let p = products.createProduct( ctx.request.body.name, ctx.request.body.manufacturer, parseFloat( ctx.request.body.price ) );
     ctx.rest( p );
   },
 

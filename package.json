@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack.config.pro.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --inline --content-base --config ./webpack.config.dev.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --inline --content-base --port 8080 --config ./webpack.config.dev.js",
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {

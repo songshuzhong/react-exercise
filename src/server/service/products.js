@@ -1,4 +1,4 @@
-var id = 0;
+let id = 0;
 
 function nextId() {
   id++;
@@ -12,7 +12,7 @@ function Product(name, manufacturer, price) {
   this.price = price;
 }
 
-var products = [
+let products = [
   new Product('iPhone 7', 'Apple', 6800),
   new Product('ThinkPad T440', 'Lenovo', 5999),
   new Product('LBP2900', 'Canon', 1099)
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   getProduct: (id) => {
-    var i;
+    let i;
     for (i = 0; i < products.length; i++) {
       if (products[i].id === id) {
         return products[i];
@@ -34,13 +34,13 @@ module.exports = {
   },
 
   createProduct: (name, manufacturer, price) => {
-    var p = new Product(name, manufacturer, price);
+    let p = new Product(name, manufacturer, price);
     products.push(p);
     return p;
   },
 
   deleteProduct: (id) => {
-    var
+    let
       index = -1,
       i;
     for (i = 0; i < products.length; i++) {

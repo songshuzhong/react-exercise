@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
+import '../styles/about.css';
+
 class About extends Component {
   constructor( props ) {
     super( props );
@@ -13,7 +15,9 @@ class About extends Component {
         <Helmet>
           <title>About</title>
         </Helmet>
-        <Link to="/map">THIS IS ABOUT PAGE.</Link>
+        <div className="box">
+          <div className="girl"></div>
+        </div>
       </div>
     );
   }

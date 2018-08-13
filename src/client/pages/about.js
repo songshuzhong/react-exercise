@@ -13,7 +13,7 @@ class About extends Component {
         <Helmet>
           <title>About</title>
         </Helmet>
-        <Link to="/app">THIS IS ABOUT PAGE.</Link>
+        <Link to="/map">THIS IS ABOUT PAGE.</Link>
       </div>
     );
   }

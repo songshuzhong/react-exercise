@@ -56,7 +56,7 @@ self.addEventListener( 'fetch', ( e ) => {
 
     return httpRes;
   } ).catch( ( err ) => {
-    alert( '当前网络不佳，信息会在网络顺畅时更新！' );
+    console.error( err );
     return caches.match( e.request );
   } ) );
 } );

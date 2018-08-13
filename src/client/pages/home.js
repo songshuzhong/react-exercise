@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+
+import Game from '../components/game';
 
 import '../styles/home.css';
 
@@ -13,13 +16,27 @@ class Home extends Component {
     return(
       <div>
         <Helmet>
-          <title>Homes</title>
+          <title>{ this.props.title }</title>
         </Helmet>
-        <Link to="/about">THIS IS HOME HOME.</Link>
+        <Game />
+        <Link to="/about">{ this.props.content }</Link>
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.func
+  ] )
+};
+
+Home.defaultProps = {
+  title: 'home',
+  content: 'this. is. home. page.'
+};
 
 export { Home };
 export default Home;

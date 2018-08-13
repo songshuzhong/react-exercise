@@ -13,9 +13,6 @@ const routes = [
   },{
     path: '/app',
     component: asyncComponent( () => import( '../pages/app' ) )
-  },{
-    path: '/map',
-    component: asyncComponent( () => import( '../pages/simple-map' ) )
   }
 ];
 

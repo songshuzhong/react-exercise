@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/noMatch.css';
+
 class NoMatch extends Component {
   constructor( props ) {
     super( props );

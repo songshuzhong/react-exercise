@@ -35,13 +35,13 @@ export default class Game extends React.Component {
     groundImage.onload = onImageLoaded;
     playerImage.onload = onImageLoaded;
 
-    skyImage.src = require('url-loader!./img/cloud.png');
-    groundImage.src = require('url-loader!./img/ground.png');
-    playerImage.src = require('url-loader!./img/dinosaur.png');
-    playerLeftImage.src = require('url-loader!./img/dinosaur_left.png');
-    playerRightImage.src = require('url-loader!./img/dinosaur_right.png');
-    playerDieImage.src = require('url-loader!./img/dinosaur_die.png');
-    obstacleImage.src = require('url-loader!./img/obstacle.png');
+    skyImage.src = require('./img/cloud.png');
+    groundImage.src = require('./img/ground.png');
+    playerImage.src = require('./img/dinosaur.png');
+    playerLeftImage.src = require('./img/dinosaur_left.png');
+    playerRightImage.src = require('./img/dinosaur_right.png');
+    playerDieImage.src = require('./img/dinosaur_die.png');
+    obstacleImage.src = require('./img/obstacle.png');
 
     this.options = {
       fps: 60,

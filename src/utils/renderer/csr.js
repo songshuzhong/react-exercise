@@ -17,7 +17,7 @@ const clientSideRender = ( modules = [] ) => (
       document.getElementById( 'root' ),
       () => document.body.removeChild( document.body.lastElementChild )
     );
-    serviceWorker();
+    //serviceWorker();
   } )
 );
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
+import Game from '../components/game';
+
 import '../styles/about.css';
 
 class About extends Component {
@@ -17,6 +19,7 @@ class About extends Component {
         </Helmet>
         <div className="box">
           <div className="girl"></div>
+          <Game />
         </div>
       </div>
     );

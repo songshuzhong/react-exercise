@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 
 import routes from './routers/index';
 
+import 'element-theme-default';
+
 const app = () => (
   routes.map( route => <Route key={ route.path } exact={ route.exact } path={ route.path } component={ route.component } /> )
 );

@@ -54,7 +54,7 @@ const devConfig = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         exclude: /node_modules/,
         include: path.resolve( rootPath, 'src/client/styles' ),
         use: ExtractTextPlugin.extract( {

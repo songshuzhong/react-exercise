@@ -6,15 +6,15 @@
  */
 (function(global){
   var thunderInstance = null;
-  var isIOS = /iphone/i.test(navigator.userAgent);
-  var uaInfo = (navigator.userAgent.match(/haokan(.*)/i) && navigator.userAgent.match(/haokan(.*)/i)[0])
-    ? navigator.userAgent.match(/haokan(.*)/i)[0].split('/') : [];
   var defaultOptions = {
     tid: '10362',  // 日志唯一标志号（申请生成）
     ct: '8',  // 产品线标志：1-百度wise首页2-百度pc首页3-手百4-百家号产品线5地图产品线6-浏览器产品线7-爱奇艺头条8-好看
     cst: '2',  // 日志行为类型：1-展现日志2-点击日志3-普通状态5-下发状态7-阅读进度8-停留时长9-请求失败
     logFrom: 'activity',  // 页面级/区块级别标志，不可重复
     logInfo: '',
+    ssid: '', // 小流量号
+    imei: '',  // 设备imei
+    logid: '', // 每次访问的唯一标识用户串联各种行为
     logExtra: {
       flow: '',
       st: '',  //日志类型：mv-小视频
@@ -29,26 +29,18 @@
       pos: '', // 本项item在瀑布流中的位置
       extra: '', // 透传字段
     }, // 日志额外信息
-    tn: uaInfo[3] || '',
-    ctn: uaInfo[3] || '',
-    appv: uaInfo[5] || '',
-    ssid: '', // 小流量号
-    imei: '',  // 设备imei
-    cuid: (uaInfo[4] && decodeURIComponent(uaInfo[4])) || '',  // 设备cuid
-    os: getOSType(),  // android|ios
-    ua: [
-      document.documentElement.clientWidth,
-      document.documentElement.clientHeight
-    ].join('_'),  // 端屏幕信息，宽_高_密度
-    logid: '', // 每次访问的唯一标识用户串联各种行为
-    version: isIOS ? (uaInfo[1] && uaInfo[1].match(/(.*)\(/)[1]) || '' : uaInfo[6] || ''
+    net_type: navigator.connection.effectiveType,
+    ua: document.documentElement.clientWidth + '_' + document.documentElement.clientHeight,
   };  //好看常用打点参数
 
   function ThunderHK(option = {}) {
     var self = this;
 
-    self.baseOption = option || {};
     self.baseURL = option.baseURL || '//hpd.baidu.com/v.gif';
+    self.isIOS = /iphone/i.test(navigator.userAgent);
+    self.uaInfo = (navigator.userAgent.match(/haokan(.*)/i) && navigator.userAgent.match(/haokan(.*)/i)[0])
+      ? navigator.userAgent.match(/haokan(.*)/i)[0].split('/') : [];
+
     self.init(option);
   }
 
@@ -62,9 +54,19 @@
     init: function(option) {
       var self = this;
       var { logExtra, ...other } = option;
+      var { uaInfo, isIOS, defaultOption } = self;
 
-      self.baseOption = Object.assign({}, defaultOptions, other);
-      Object.assign(self.baseOption.logExtra, logExtra);
+      Object.assign(defaultOption, {
+        tn: uaInfo[3] || '',
+        ctn: uaInfo[3] || '',
+        appv: uaInfo[5] || '',
+        os: getOSType(),
+        ut: getOSVersion(),
+        cuid: (uaInfo[4] && decodeURIComponent(uaInfo[4])) || '',
+        version: isIOS ? (uaInfo[1] && uaInfo[1].match(/(.*)\(/)[1]) || '' : uaInfo[6] || ''
+      });
+      Object.assign(defaultOption, other);
+      Object.assign(defaultOption.logExtra, logExtra);
     },
 
     /**
@@ -72,10 +74,9 @@
      *
      * @param {object} newOption 参数对象
      * @param {string} url 日志地址
-     * @param {function} callback 回调函数
      * @return {Thunder} this
      */
-    sendLog: function(newOption, url, callback) {
+    sendLog: function(newOption, url) {
       var self = this;
       var id = 'l' + Date.now();
       var req = window[id] = new Image();
@@ -91,14 +92,7 @@
           callback && callback();
         }
       };
-      req.src = this.assembleUrl(url, self.baseOption, newOption);
-
-      if (typeof callback === 'function') {
-        timer = setTimeout(function() {
-          timer = null;
-          callback();
-        }, 500)
-      }
+      req.src = this.assembleUrl(url, self.defaultOption, newOption);
 
       return self;
     },
@@ -110,21 +104,21 @@
      * @param {object} newOption 参数对象
      * @returns {string}
      */
-    assembleUrl: function(url, baseOption, newOption) {
+    assembleUrl: function(url, defaultOption, newOption) {
       var params = '';
       var { logExtra, ...other } = newOption;
-      var finalOption = Object.assign({}, baseOption, other);
 
-      Object.assign(finalOption.logExtra, logExtra);
-      finalOption.r = 'l' + Date.now();
+      Object.assign(defaultOption, other);
+      Object.assign(defaultOption.logExtra, logExtra);
+      defaultOption.r = 'l' + Date.now();
 
-      for (var i in finalOption) {
-        if (finalOption.hasOwnProperty(i)) {
-          if (finalOption[i] !== undefined) {
-            if (typeof finalOption[i] === 'object') {
-              params += '&' + i + '=' + encodeURIComponent(JSON.stringify(finalOption[i]));
+      for (var i in defaultOption) {
+        if (defaultOption.hasOwnProperty(i)) {
+          if (defaultOption[i] !== undefined) {
+            if (typeof defaultOption[i] === 'object') {
+              params += '&' + i + '=' + encodeURIComponent(JSON.stringify(defaultOption[i]));
             } else {
-              params += '&' + i + '=' + encodeURIComponent(finalOption[i]);
+              params += '&' + i + '=' + encodeURIComponent(defaultOption[i]);
             }
           }
         }
@@ -146,6 +140,21 @@
     } else {
       return '';
     }
+  }
+
+  function getOSVersion() {
+    let version = "";
+    let ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf("like mac os x") > 0) {
+      version = ua.match(/os [\d._]+/gi);
+      version = (version + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, ".");
+    } else if (ua.indexOf("android") > 0) {
+      version = ua.match(/android [\d._]+/gi);
+      version = (version + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, ".");
+    }
+
+    return version;
   }
 
   var exportThunder = {

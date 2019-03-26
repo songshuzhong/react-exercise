@@ -6,7 +6,7 @@
  */
 (function (global) {
   var thunderInstance = null;
-  var defaultOptions = {
+  var defaultOption = {
     tid: '10362',  // 日志唯一标志号（申请生成）
     ct: '8',  // 产品线标志：1-百度wise首页2-百度pc首页3-手百4-百家号产品线5地图产品线6-浏览器产品线7-爱奇艺头条8-好看
     cst: '2',  // 日志行为类型：1-展现日志2-点击日志3-普通状态5-下发状态7-阅读进度8-停留时长9-请求失败
@@ -54,7 +54,7 @@
     init: function (option) {
       var self = this;
       var {logExtra, ...other} = option;
-      var {uaInfo, isIOS, defaultOption} = self;
+      var {uaInfo, isIOS} = self;
 
       Object.assign(defaultOption, {
         tn: uaInfo[3] || '',
@@ -86,7 +86,7 @@
       req.onload = req.onerror = req.onabort = function () {
         window[id] = null
       };
-      req.src = this.assembleUrl(url, self.defaultOption, newOption);
+      req.src = this.assembleUrl(url, defaultOption, newOption);
     },
 
     /**
@@ -153,7 +153,7 @@
     create: function (type, key, option) {
       return new ThunderHK(option);
     },
-    get: function (option) {
+    getInstance: function (option) {
       return thunderInstance || (thunderInstance = this.create(option));
     }
   };
@@ -165,7 +165,7 @@
       return exportThunder;
     });
   } else {
-    global.Thunder = exportThunder;
+    global.ThunderHK = exportThunder;
     global.thunderLog = exportThunder;
   }
 

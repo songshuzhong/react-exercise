@@ -9,6 +9,10 @@ class About extends Component {
     super( props );
   }
 
+    componentDidMount() {
+        alert(0)
+    }
+
   render() {
     return( [
       <Helmet key='helmet'>

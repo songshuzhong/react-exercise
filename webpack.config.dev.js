@@ -58,7 +58,7 @@ const devConfig = {
         }
       },
       {
-        test: /\.(css)$/,
+        test: /\.(css|less)$/,
         use: ExtractCssChunksPlugin.extract( {
           fallback: 'style-loader',
           use: [

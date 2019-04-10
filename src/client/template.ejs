@@ -3,9 +3,70 @@
 <head>
 </head>
 <body>
+<style type='text/css'>:root {
+        --skeleton-padding: 46px;
+        --skeleton-height: 100vh;
+        --skeleton-skeleton: linear-gradient(lightgrey var(--skeleton-height), transparent 0);
+        --avatar-size: 80px;
+        --avatar-position: var(--skeleton-padding) var(--skeleton-padding);
+        --avatar-skeleton: radial-gradient(circle 40px at center, white 99%, transparent 0);
+        --title-height: 48px;
+        --title-width: 70vw;
+        --title-position: var(--skeleton-padding) 180px;
+        --title-skeleton: linear-gradient(white var(--title-height), transparent 0);
+        --desc-line-height: 38px;
+        --desc-line-skeleton: linear-gradient(white var(--desc-line-height), transparent 0);
+        --desc-line-1-width: 50vw;
+        --desc-line-1-position: var(--skeleton-padding) 280px;
+        --desc-line-2-width: 75vw;
+        --desc-line-2-position: var(--skeleton-padding) 360px;
+        --footer-height: 200px;
+        --footer-position: 0 calc(var(--skeleton-height) - var(--footer-height));
+        --footer-skeleton: linear-gradient(gray var(--footer-height), transparent 0);
+        --blur-width: 200px;
+        --blur-size: var(--blur-width) calc(var(--skeleton-height) - var(--footer-height));
+    }
+
+    .skeleton {
+        width: 100vw;
+        height: var(--skeleton-height);
+        padding: 40px;
+    }
+
+    .skeleton:empty::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        box-shadow: 0 10px 45px rgba(0, 0, 0, 0.1);
+        background-image: linear-gradient(90deg, rgba(211, 211, 211, 0) 0, rgba(211, 211, 211, 0.8) 50%, rgba(211, 211, 211, 0) 100%), var(--title-skeleton), var(--desc-line-skeleton), var(--desc-line-skeleton), var(--avatar-skeleton), var(--footer-skeleton), var(--skeleton-skeleton);
+        background-size: var(--blur-size), var(--title-width) var(--title-height), var(--desc-line-1-width) var(--desc-line-height), var(--desc-line-2-width) var(--desc-line-height), var(--avatar-size) var(--avatar-size), 100% var(--footer-height), 100% 100%;
+        background-position: -200% 0, var(--title-position), var(--desc-line-1-position), var(--desc-line-2-position), var(--avatar-position), var(--footer-position), 0 0;
+        background-repeat: no-repeat;
+        -webkit-animation: loading 1.5s infinite;
+        animation: loading 1.5s infinite;
+    }
+
+    @-webkit-keyframes loading {
+        to {
+            background-position: 350% 0, var(--title-position), var(--desc-line-1-position), var(--desc-line-2-position), var(--avatar-position), var(--footer-position), 0 0;
+        }
+    }
+
+    @keyframes loading {
+        to {
+            background-position: 350% 0, var(--title-position), var(--desc-line-1-position), var(--desc-line-2-position), var(--avatar-position), var(--footer-position), 0 0;
+        }
+    }</style>
+<div class='skeleton'></div>
+",
+
 <div id="root"></div>
 </body>
 <script type="text/javascript">
-  window.clientSideRender();
+    window.clientSideRender();
 </script>
+<script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
+<script>eruda.init();</script>
 </html>

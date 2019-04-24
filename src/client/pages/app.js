@@ -9,10 +9,6 @@ class App extends Component {
     super( props );
   }
 
-    componentDidMount() {
-        alert(0)
-    }
-
   render() {
     return(
       <div>

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack.config.pro.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.13 --inline --content-base --config ./webpack.config.dev.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.35 --inline --content-base --config ./webpack.config.dev.js",
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {
@@ -28,7 +28,8 @@
     "file-loader": "^1.1.11",
     "flush-css-chunks-webpack-plugin": "^0.2.0",
     "html-webpack-plugin": "^3.2.0",
-    "less-loader": "^4.1.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
     "nprogress": "^0.2.0",
     "postcss-flexbugs-fixes": "^4.0.0",
     "postcss-loader": "^2.1.6",

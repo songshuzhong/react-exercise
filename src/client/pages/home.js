@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 
 import {Carousel} from '../components/common/carousel';
+import uaParser from '../../utils/ua-detect';
+
 import '../styles/home.less';
 
 class Home extends Component {
@@ -23,12 +25,22 @@ class Home extends Component {
                 <Helmet key='helmet'>
                     <title>Home</title>
                 </Helmet>
-                <Carousel auto={false} time={5000} pointer="rectangle" cStyle={{paddingBottom: '100px'}} pColor="#5E5E5E">
-                    {
-                        [1, 2, 3, 4, 5].map(index => <div className="item">
-                            <img src={`http://laichuanfeng.com/demo/carousel/carousel_${index + 1}.jpg`} />
-                        </div>)
-                    }
+                <Carousel>
+                    <div className="item">
+                        <img src='http://laichuanfeng.com/demo/carousel/carousel_1.jpg' />
+                    </div>
+                    <div className="item">
+                        <img src='http://laichuanfeng.com/demo/carousel/carousel_2.jpg' />
+                    </div>
+                    <div className="item">
+                        <img src='http://laichuanfeng.com/demo/carousel/carousel_3.jpg' />
+                    </div>
+                    <div className="item">
+                        <img src='http://laichuanfeng.com/demo/carousel/carousel_4.jpg' />
+                    </div>
+                    <div className="item">
+                        <img src='http://laichuanfeng.com/demo/carousel/carousel_5.jpg' />
+                    </div>
                 </Carousel>
                 <Link key='link' to="/about">THIS IS HOME HOME.</Link>
             </React.Fragment>

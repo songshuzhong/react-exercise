@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./webpack.config.pro.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.35 --inline --content-base --config ./webpack.config.dev.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.34 --inline --content-base --config ./webpack.config.dev.js",
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {

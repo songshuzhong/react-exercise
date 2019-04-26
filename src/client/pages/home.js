@@ -10,15 +10,10 @@ import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 
 import {Carousel} from '../components/common/carousel';
-import uaParser from '../../utils/ua-detect';
 
 import '../styles/home.less';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <React.Fragment>

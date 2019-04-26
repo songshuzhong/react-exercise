@@ -15,7 +15,7 @@ const devConfig = {
     context: path.join(rootPath, './src'),
     entry: {
         client: './utils/renderer/csr.js',
-        vendors: ['react', 'react-dom', 'react-loadable', 'react-router', 'react-router-dom']
+        vendors: ['react', 'react-dom', 'react-loadable', 'react-router', 'react-router-dom', 'react-helmet']
     },
     output: {
         filename: 'js/[name].[hash:8].js',

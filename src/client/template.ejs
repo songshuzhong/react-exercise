@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <style type="text/css">
+        * { touch-action: pan-y; }
+    </style>
     <script type="text/javascript">
         (function (win, tcf) {
             var doc = win.document;
@@ -137,7 +140,6 @@
         }
 
         .skeleton {
-            width: 100vw;
             height: var(--skeleton-height);
         }
 
@@ -166,7 +168,8 @@
             to {
                 background-position: 350% 0, var(--title-position), var(--desc-line-1-position), var(--desc-line-2-position), var(--avatar-position), var(--footer-position), 0 0;
             }
-        }</style>
+        }
+    </style>
     <div class='skeleton'></div>
 </div>
 </body>

@@ -1,0 +1,15 @@
+.advice{
+  height: .2919rem;
+  width: .2919rem;
+  border-radius: 100%;
+  display: inline-block;
+  background-image: url('../assets/radiobutton_highlighted.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  margin-top: -4px;
+}
+input[type="radio"]:checked + .advice{
+  background-image: url('../assets/radiobutton.png');
+}

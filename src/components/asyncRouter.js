@@ -1,13 +1,13 @@
 /**
  *@file
  *@author sshuzhong
- *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@mailTo songshuzhong@baidu.com.cn
  *@Date
  *@desc
  */
 import React, {Component} from 'react';
 
-function asyncComponent(importComponent) {
+function asyncRouter(importComponent) {
     class AsyncComponent extends Component {
         constructor(props) {
             super(props);
@@ -34,5 +34,5 @@ function asyncComponent(importComponent) {
     return AsyncComponent;
 }
 
-export {asyncComponent};
-export default asyncComponent;
+export {asyncRouter};
+export default asyncRouter;

@@ -1,7 +1,7 @@
 /**
  *@file
  *@author sshuzhong
- *@mailTo <a href='mailto:songshuzhong@baidu.com.cn'>Song ShuZhong</a>
+ *@mailTo songshuzhong@baidu.com.cn
  *@Date
  *@desc
  */
@@ -12,14 +12,14 @@ import Helmet from 'react-helmet';
 import '../../../styles/about.css';
 
 const About = props =>
-    <React.Fragment>
+  <React.Fragment>
         <Helmet key='helmet'>
             <title>About</title>
         </Helmet>
         <Link key='link' to='/app'>THIS IS ABOUT PAGE.</Link>
         <label>
-            <input type='radio' name='type' id='adviceRadio1' value='1' hidden/>
-            <label htmlFor='adviceRadio1' className='advice'/>
+            <input type='radio' name='type' id='adviceRadio1' value='1' hidden />
+            <label htmlFor='adviceRadio1' className='advice' />
             <span className='radio-name'>问题</span>
         </label>
     </React.Fragment>;

@@ -1,8 +1,10 @@
 /**
- * @file webpack配置
- * @author bao
+ *@file
+ *@author sshuzhong
+ *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@Date
+ *@desc
  */
-
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -91,6 +93,7 @@ let config = {
                 test: /\.(js|jsx|ts|tsx)$/,
                 include: path.resolve(__dirname, 'src'),
                 use: [
+                    'eslint-loader',
                     {
                         loader: 'babel-loader',
                         options: {

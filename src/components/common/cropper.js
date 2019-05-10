@@ -1,7 +1,7 @@
 /**
  *@file
  *@author sshuzhong
- *@mailTo <a href="mailto:songshuzhong@baidu.com.cn">Song ShuZhong</a>
+ *@mailTo songshuzhong@baidu.com.cn
  *@Date
  *@desc
  */
@@ -103,9 +103,9 @@ class Cropper extends React.Component {
             croppedFile.uid = uid;
             this.getBase64(croppedFile, imageUrl =>
                 this.setState({
-                        show: false,
-                        src: imageUrl
-                    }, () => this.props.getCropImg(croppedFile)
+                    show: false,
+                    src: imageUrl
+                }, () => this.props.getCropImg(croppedFile)
                 )
             );
         }, type);
@@ -144,10 +144,11 @@ class Cropper extends React.Component {
                     type="file"
                     style={{display: 'none'}}
                     onChange={this.onSelectFile}
-                    ref={ref => this.uploadRef = ref}/>
+                    ref={ref => this.uploadRef = ref}
+                />
                 {
                     src
-                        ? <img src={src} className='crop-img-btn' onClick={this.onSelectTriger}/>
+                        ? <img src={src} className='crop-img-btn' onClick={this.onSelectTriger} />
                         : <div className='crop-img-btn' onClick={this.onSelectTriger}> + </div>
                 }
                 <Modal show={show} onOK={this.closeModal} onClose={this.closeModal}>

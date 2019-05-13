@@ -15,6 +15,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const TerserPlugin = require('terser-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 const prodMode = process.env.NODE_ENV === 'production';
 
@@ -82,6 +83,11 @@ let config = {
         filename: 'js/[name].[hash:6].js',
         chunkFilename: 'js/chunks/[name].[hash:6].chunk.js'
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'output'),
+        compress: true,
+        port: 3000,
+    },
     externals: ['React', 'lodash'],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.less']
@@ -93,7 +99,6 @@ let config = {
                 test: /\.(js|jsx|ts|tsx)$/,
                 include: path.resolve(__dirname, 'src'),
                 use: [
-                    'eslint-loader',
                     {
                         loader: 'babel-loader',
                         options: {
@@ -264,5 +269,19 @@ let config = {
 };
 
 config.plugins = config.plugins.concat(htmlPlugins);
+
+if (prodMode) {
+    config.plugins = config.plugins.concat(
+        new BundleAnalyzerPlugin(
+            {
+                analyzerMode: 'static',
+                reportFilename: 'app.report.html',
+                defaultSizes: 'parsed',
+                openAnalyzer: false,
+                logLevel: 'info'
+            }
+        )
+    );
+}
 
 module.exports = config;

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.24 --inline --content-base --config ./webpack.config.dev.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --inline --content-base --config ./webpack.config.js",
     "start": "node ./src/server/app.js"
   },
   "devDependencies": {
@@ -48,7 +48,8 @@
     "terser-webpack-plugin": "^1.2.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
     "babel-eslint": "^10.0.1",
@@ -67,6 +68,7 @@
     "react-confirm": "0.1.18",
     "react-dom": "16.8.1",
     "react-image-crop": "^6.0.18",
-    "react-router-dom": "^4.4.0"
+    "react-router-dom": "^4.4.0",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }

@@ -91,8 +91,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "lint-staged": "^8.1.7",
     "mobx": "4.9.2",
     "mobx-react": "5.4.3",
     "react": "16.8.1",
@@ -100,6 +99,8 @@
     "react-dom": "16.8.1",
     "react-image-crop": "^6.0.18",
     "react-router-dom": "^4.4.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
     "webpack-bundle-analyzer": "^3.3.2"
   }
 }

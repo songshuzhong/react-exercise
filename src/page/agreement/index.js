@@ -14,9 +14,9 @@ import {asyncRouter} from '../../components/asyncRouter';
 render(
     <HashRouter>
         <Switch>
-            <Route exact path='/' component={asyncRouter(() => import('./scene/home'))}/>
-            <Route exact path='/app' component={asyncRouter(() => import('./scene/app'))}/>
-            <Route exact path='/about' component={asyncRouter(() => import('./scene/about'))}/>
+            <Route path='/' component={asyncRouter(() => import('./scene/home'))}/>
+            <Route path='/app' component={asyncRouter(() => import('./scene/app'))}/>
+            <Route path='/about' component={asyncRouter(() => import('./scene/about'))}/>
         </Switch>
     </HashRouter>,
     document.getElementById('root')

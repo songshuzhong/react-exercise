@@ -28,6 +28,11 @@
       "git add"
     ]
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true

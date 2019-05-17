@@ -11,6 +11,7 @@ import {Helmet} from 'react-helmet';
 
 import {Carousel} from '../../../components/common/carousel';
 import {Cropper} from '../../../components/common/cropper';
+import {ProvincePicker} from '../../../components/common/province-picker';
 
 import '../../../styles/home.less';
 
@@ -52,6 +53,7 @@ class Home extends Component {
           </div>
         </Carousel>
         <Cropper getCropImg={this.OnCropImg} />
+        <ProvincePicker getProvince={(p)=>console.log(p)} getCity={(c)=>console.log(c)}/>
         <Link key='link' to="/about">THIS IS HOME HOME.</Link>
       </React.Fragment>
     );

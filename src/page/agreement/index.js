@@ -5,7 +5,6 @@
  *@Date 2019/04/07
  *@desc 创作者注册
  */
-
 import * as React from 'react';
 import {render} from 'react-dom';
 import {HashRouter, Route, Switch} from 'react-router-dom';

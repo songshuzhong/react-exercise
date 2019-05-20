@@ -16,7 +16,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
     "watch": "set NODE_ENV=development&&webpack-dev-server --inline --content-base --config ./webpack.config.js",
-    "start": "node ./src/server/app.js"
+    "start": "node ./src/server/app.js",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -51,7 +52,6 @@
   },
   "husky": {
     "hooks": {
-      "precommit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },

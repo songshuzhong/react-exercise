@@ -4,7 +4,6 @@
  *@mailTo songshuzhong@baidu.com.cn
  *@Date 2019/05/20
  *@desc 代码规范自动化校验
- *
  */
 import * as React from 'react';
 

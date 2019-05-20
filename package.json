@@ -14,6 +14,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "lint": "tslint --project tsconfig.json 'src/**/*.js'",
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
     "watch": "set NODE_ENV=development&&webpack-dev-server --inline --content-base --config ./webpack.config.js",
     "start": "node ./src/server/app.js",
@@ -44,9 +45,12 @@
       "@commitlint/config-conventional"
     ]
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "devDependencies": {
-    "@commitlint/cli": "^7.1.2",
-    "@commitlint/config-conventional": "^7.1.2",
     "@babel/core": "7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
@@ -91,6 +95,9 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-conventional": "^7.1.2",
+    "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "mobx": "4.9.2",
     "mobx-react": "5.4.3",
@@ -101,6 +108,8 @@
     "react-router-dom": "^4.4.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.4.5",
     "webpack-bundle-analyzer": "^3.3.2"
   }
 }

@@ -1,8 +1,7 @@
 import {observable} from 'mobx';
 
 export class ContentPage {
-
-    @observable fetching:      boolean = false;
+    @observable fetching: boolean = false;
     @observable error: boolean = false;
     @observable count: number = 1;
     @observable activeTab: string = '0';

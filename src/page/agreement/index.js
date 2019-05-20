@@ -10,7 +10,7 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import {HashRouter, Route, Switch} from 'react-router-dom';
 
-import {asyncRouter} from '../../components/asyncRouter';
+import {asyncRouter} from '../../components/asyncRouter'    ;
 
 render(
     <HashRouter>

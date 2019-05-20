@@ -6,12 +6,12 @@
  *@desc 代码规范自动化校验
  *
  */
-import * as React from 'react'
+import * as React from 'react';
 
-import { render } from 'react-dom'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import {render} from 'react-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
-import { asyncRouter } from '../../components/asyncRouter'
+import {asyncRouter} from '../../components/asyncRouter';
 
 render(
   <HashRouter>
@@ -24,5 +24,5 @@ render(
       />
     </Switch>
   </HashRouter>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);

@@ -26,13 +26,7 @@ class About extends React.Component {
                     THIS IS ABOUT PAGE.
                 </Link>
                 <label>
-                    <input
-                        type="radio"
-                        name="type"
-                        id="adviceRadio1"
-                        value="1"
-                        hidden
-                    />
+                    <input type="radio" name="type" id="adviceRadio1" value="1" hidden />
                     <label htmlFor="adviceRadio1" className="advice" />
                     <span className="radio-name">问题</span>
                 </label>

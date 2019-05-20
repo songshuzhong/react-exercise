@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import {observable} from 'mobx';
 
 export class ContentPage {
     @observable fetching: boolean = false;

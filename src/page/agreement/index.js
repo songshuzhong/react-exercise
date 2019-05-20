@@ -2,7 +2,7 @@
  *@file
  *@author sshuzhong
  *@mailTo songshuzhong@baidu.com.cn
- *@Date 2019/04/07
+ *@Date 2019/05/20
  *@desc 创作者注册
  */
 import * as React from 'react'

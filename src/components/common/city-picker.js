@@ -44,26 +44,20 @@ export class CityPicker extends React.Component {
 
     touchmoveHandler(e) {
         this.dy = e.touches[0].pageY - this.startY;
+        this.dy = Math.floor(this.dy / 33.75) * 33.75;
         this.moveTarget.style.transform = 'translate3d(0, ' + this.dy + 'px, 0)';
         e.stopPropagation();
         e.preventDefault();
     }
 
     touchendHandeler(e) {
-        e.changedTouches[0].target.nextElementSibling.style.transform = 'translate3d(0, ' + this.dy + 'px, 0)';
+        this.moveTarget.style.transform = 'translate3d(0, ' + this.dy + 'px, 0)';
         e.stopPropagation();
     }
 
     render() {
-        const city_picker = 1;
         const {show, onClose, onOK} = this.props;
         const {provinces, cities} = this.state;
-
-        if (city_picker == 1) {
-            console.log(1);
-        } else {
-            console.log(1);
-        }
 
         return (
             <div className="hk-city-picker" style={{display: show ? 'block' : 'none'}}>
@@ -79,9 +73,7 @@ export class CityPicker extends React.Component {
                             <div className="indicator" />
                             <div className="items">
                                 {Object.keys(provinces).map(k => (
-                                    <div key={k} className="item">
-                                        {provinces[k]}
-                                    </div>
+                                    <div key={k}>{provinces[k]}</div>
                                 ))}
                             </div>
                         </div>
@@ -90,9 +82,7 @@ export class CityPicker extends React.Component {
                             <div className="indicator" />
                             <div className="items">
                                 {Object.keys(cities).map(k => (
-                                    <div key={k} className="item">
-                                        {cities[k]}
-                                    </div>
+                                    <div key={k}>{cities[k]}</div>
                                 ))}
                             </div>
                         </div>
@@ -101,9 +91,7 @@ export class CityPicker extends React.Component {
                             <div className="indicator" />
                             <div className="items">
                                 {Object.keys(provinces).map(k => (
-                                    <div key={k} className="item">
-                                        {provinces[k]}
-                                    </div>
+                                    <div key={k}>{provinces[k]}</div>
                                 ))}
                             </div>
                         </div>

@@ -10,7 +10,7 @@
     "indent": [
       true,
       "spaces",
-      4
+      6
     ],
     "prefer-const": true,
     "prefer-method-signature": true,
@@ -97,5 +97,11 @@
       "src/**/*.jsx",
       "src/**/*.tsx"
     ]
-  }
+  },
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ]
 }

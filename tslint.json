@@ -91,8 +91,10 @@
   },
   "linterOptions": {
     "exclude": [
-      "src/page/demo/*.ts?(x)",
-      "src/util/*.ts"
+      "src/**/*.js",
+      "src/**/*.ts",
+      "src/**/*.jsx",
+      "src/**/*.tsx"
     ]
   }
 }

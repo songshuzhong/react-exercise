@@ -153,7 +153,8 @@ let config = {
                                 })
                             ]
                         }
-                    }
+                    },
+                    'less-loader'
                 ]
             },
             {

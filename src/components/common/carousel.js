@@ -136,12 +136,10 @@ export class Carousel extends Component {
             // 判断用户是往哪个方向滑
             if (dx > 0) {
                 this.showPrev();
-            }
-            else {
+            } else {
                 this.showNext();
             }
-        }
-        else {
+        } else {
             this.setTransition(1, 1, 1);
             // 滑动失败了
             this.setTransform();
@@ -158,20 +156,17 @@ export class Carousel extends Component {
     setTransition(a, b, c) {
         if (a) {
             this.carouselLis[this.left].style.transition = 'transform 1s';
-        }
-        else {
+        } else {
             this.carouselLis[this.left].style.transition = 'none';
         }
         if (b) {
             this.carouselLis[this.center].style.transition = 'transform 1s';
-        }
-        else {
+        } else {
             this.carouselLis[this.center].style.transition = 'none';
         }
         if (c) {
             this.carouselLis[this.right].style.transition = 'transform 1s';
-        }
-        else {
+        } else {
             this.carouselLis[this.right].style.transition = 'none';
         }
     }
@@ -195,17 +190,17 @@ export class Carousel extends Component {
     }
 
     render() {
+        const {onClick} = this.props;
         return (
             <section className="bd-hk-carousel">
                 <ul style={this.props.cStyle}>
-                    {
-                        React.Children.map(this.props.children, (child, i) =>
-                            <li key={i}>
-                                {
-                                    React.cloneElement(child)
-                                }
-                            </li>)
-                    }
+                    {React.Children.map(this.props.children, (child, i) => (
+                        <li key={i}>
+                            {React.cloneElement(child, {
+                                onClick,
+                            })}
+                        </li>
+                    ))}
                 </ul>
                 <ol className="points" />
             </section>

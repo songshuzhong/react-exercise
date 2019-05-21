@@ -11,7 +11,7 @@ import {Helmet} from 'react-helmet';
 
 import {Carousel} from '../../../components/common/carousel';
 import {Cropper} from '../../../components/common/cropper';
-import {ProvincePicker} from '../../../components/common/province-picker';
+import {CityPicker} from '../../../components/common/city-picker';
 
 import '../../../styles/home.less';
 
@@ -22,6 +22,8 @@ class Home extends Component {
             crop: '',
             isShowing: false,
         };
+        this.closePicker = this.closePicker.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.OnCropImg = this.OnCropImg.bind(this);
     }
 
@@ -29,13 +31,24 @@ class Home extends Component {
         this.setState({crop});
     }
 
+    handleClick() {
+        const {isShowing} = this.state;
+        this.setState({isShowing: !isShowing});
+    }
+
+    closePicker() {
+        this.setState({isShowing: false});
+    }
+
     render() {
+        const {isShowing} = this.state;
+
         return (
             <React.Fragment>
                 <Helmet key="helmet">
                     <title>Home</title>
                 </Helmet>
-                <Carousel>
+                <Carousel onClick={this.handleClick}>
                     <div className="item">
                         <img src="http://laichuanfeng.com/demo/carousel/carousel_1.jpg" />
                     </div>
@@ -53,10 +66,7 @@ class Home extends Component {
                     </div>
                 </Carousel>
                 <Cropper getCropImg={this.OnCropImg} />
-                <ProvincePicker
-                    getProvince={p => console.log(p)}
-                    getCity={c => console.log(c)}
-                />
+                <CityPicker show={isShowing} onOK={this.closePicker} onClose={this.closePicker} />
                 <Link key="link" to="/about">
                     THIS IS HOME HOME.
                 </Link>

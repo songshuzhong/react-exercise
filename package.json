@@ -74,7 +74,7 @@
     "postcss-plugin-px2rem": "^0.8.1",
     "postcss-preset-env": "^6.5.0",
     "postcss-safe-parser": "^4.0.1",
-    "prettier": "^1.17.0",
+    "prettier": "^1.17.1",
     "react-helmet": "^5.2.1",
     "script-loader": "^0.7.2",
     "style-loader": "^0.23.1",
@@ -99,6 +99,7 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.4.5",
     "webpack-bundle-analyzer": "^3.3.2"
   }

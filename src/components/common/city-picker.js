@@ -62,6 +62,8 @@ export class CityPicker extends React.Component {
 
     if (city_picker == 1) {
       console.log(1);
+    } else {
+      console.log(1);
     }
 
     return (

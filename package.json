@@ -25,17 +25,6 @@
       "git add"
     ]
   },
-  "prettier": {
-    "printWidth": 120,
-    "tabWidth": 4,
-    "useTabs": false,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "bracketSpacing": false,
-    "jsxBracketSameLine": false,
-    "proseWrap": "always"
-  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

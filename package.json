@@ -30,16 +30,6 @@
       "path": "node_modules/cz-conventional-changelog"
     }
   },
-  "prettier": {
-    "printWidth": 120,
-    "useTabs": false,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "bracketSpacing": false,
-    "jsxBracketSameLine": false,
-    "proseWrap": "always"
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"

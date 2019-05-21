@@ -5,11 +5,11 @@
  *@Date 2019/0424
  *@desc
  */
-import React from 'react';
+import React from "react";
 
-import {locations} from './enum-location';
+import { locations } from "./enum-location";
 
-import '../../styles/components/city-picker.less';
+import "../../styles/components/city-picker.less";
 
 export class CityPicker extends React.Component {
   constructor(props) {
@@ -18,12 +18,12 @@ export class CityPicker extends React.Component {
     this.startY = 0;
     this.dy = 0;
     this.state = {
-      provinces: locations['86'],
-      cities: locations['110000'],
-      selectCityKey: '110101',
-      selectProvinceKey: '110000',
-      selectProvince: '',
-      selectCitys: '',
+      provinces: locations["86"],
+      cities: locations["110000"],
+      selectCityKey: "110101",
+      selectProvinceKey: "110000",
+      selectProvince: "",
+      selectCitys: ""
     };
     this.touchstartHandler = this.touchstartHandler.bind(this);
     this.touchmoveHandler = this.touchmoveHandler.bind(this);
@@ -31,9 +31,9 @@ export class CityPicker extends React.Component {
   }
 
   componentDidMount() {
-    this.content.addEventListener('touchstart', this.touchstartHandler);
-    this.content.addEventListener('touchmove', this.touchmoveHandler);
-    this.content.addEventListener('touchend', this.touchendHandeler);
+    this.content.addEventListener("touchstart", this.touchstartHandler);
+    this.content.addEventListener("touchmove", this.touchmoveHandler);
+    this.content.addEventListener("touchend", this.touchendHandeler);
   }
 
   touchstartHandler(e) {
@@ -44,22 +44,26 @@ export class CityPicker extends React.Component {
 
   touchmoveHandler(e) {
     this.dy = e.touches[0].pageY - this.startY;
-    this.moveTarget.style.transform = 'translate3d(0, ' + this.dy + 'px, 0)';
+    this.moveTarget.style.transform = "translate3d(0, " + this.dy + "px, 0)";
     e.stopPropagation();
     e.preventDefault();
   }
 
   touchendHandeler(e) {
-    e.changedTouches[0].target.nextElementSibling.style.transform = 'translate3d(0, ' + this.dy + 'px, 0)';
+    e.changedTouches[0].target.nextElementSibling.style.transform =
+      "translate3d(0, " + this.dy + "px, 0)";
     e.stopPropagation();
   }
 
   render() {
-    const {show, onClose, onOK} = this.props;
-    const {provinces, cities} = this.state;
+    const { show, onClose, onOK } = this.props;
+    const { provinces, cities } = this.state;
 
     return (
-      <div className="hk-city-picker" style={{display: show ? 'block' : 'none'}}>
+      <div
+        className="hk-city-picker"
+        style={{ display: show ? "block" : "none" }}
+      >
         <div className="wrapper">
           <header className="header">
             <div onClick={onClose}>取消</div>

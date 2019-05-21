@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "src/**/*.*(css|less|js|jsx|ts|tsx)": [
-      "prettier --config ./tslint.json --write",
+      "tslint --fix",
       "git add"
     ]
   },
@@ -87,6 +87,7 @@
   "dependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
+    "eslint": "^5.16.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "mobx": "4.9.2",

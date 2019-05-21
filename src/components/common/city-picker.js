@@ -12,6 +12,8 @@ import { locations } from "./enum-location";
 import "../../styles/components/city-picker.less";
 
 export class CityPicker extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.moveTarget = null;

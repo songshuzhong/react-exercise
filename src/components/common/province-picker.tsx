@@ -17,7 +17,7 @@ const defaultStyle = {
     borderBottom: '.0243rem solid #e0e0e0',
     marginBottom: '.12rem',
     background: 'transparent',
-    fontSize: '.34rem'
+    fontSize: '.34rem',
 };
 
 export class ProvincePicker extends React.Component {
@@ -29,7 +29,7 @@ export class ProvincePicker extends React.Component {
             selectCityKey: '110101',
             selectProvinceKey: '110000',
             selectProvince: '',
-            selectCitys: ''
+            selectCitys: '',
         };
     }
 
@@ -39,11 +39,9 @@ export class ProvincePicker extends React.Component {
         const key = e.target.options[index].value;
 
         if (type === 1) {
-            this.setState({selectProvince: name, selectProvinceKey: key},
-                this.props.getProvince(name));
+            this.setState({selectProvince: name, selectProvinceKey: key}, this.props.getProvince(name));
         } else {
-            this.setState({selectCity: name, selectCityKey: key},
-                this.props.getCity(name));
+            this.setState({selectCity: name, selectCityKey: key}, this.props.getCity(name));
         }
     }
 
@@ -58,19 +56,25 @@ export class ProvincePicker extends React.Component {
                     style={style || defaultStyle}
                     className={className}
                     value={selectProvinceKey}
-                    onChange={this.handleSelectChanged.bind(this, 1)}>
-                    {
-                        Object.keys(province).map(p => <option key={p} value={p}>{province[p]}</option>)
-                    }
+                    onChange={this.handleSelectChanged.bind(this, 1)}
+                >
+                    {Object.keys(province).map(p => (
+                        <option key={p} value={p}>
+                            {province[p]}
+                        </option>
+                    ))}
                 </select>
                 <select
                     style={style || defaultStyle}
                     className={className}
                     value={selectCityKey}
-                    onChange={this.handleSelectChanged.bind(this, 2)}>
-                    {
-                        Object.keys(citys).map(c => <option key={c} value={c}>{citys[c]}</option>)
-                    }
+                    onChange={this.handleSelectChanged.bind(this, 2)}
+                >
+                    {Object.keys(citys).map(c => (
+                        <option key={c} value={c}>
+                            {citys[c]}
+                        </option>
+                    ))}
                 </select>
                 <div className="area-picker-wrap">
                     <span className="area-picker-trigger" />

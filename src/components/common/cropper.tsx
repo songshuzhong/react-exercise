@@ -24,8 +24,8 @@ class Cropper extends React.Component {
                 x: 10,
                 y: 10,
                 width: 80,
-                height: 80
-            }
+                height: 80,
+            },
         };
         this.onSelectTriger = this.onSelectTriger.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -47,7 +47,7 @@ class Cropper extends React.Component {
                     this.setState({src: reader.result});
                     this.uploadRef.value = '';
                 },
-                false
+                false,
             );
             reader.readAsDataURL(e.target.files[0]);
             this.setState({show: true, oldFile: e.target.files[0]});
@@ -66,20 +66,10 @@ class Cropper extends React.Component {
         const modalWidth = naturalWidth >= naturalHeight ? 640 + 24 * 2 : 320 + 24 * 2;
 
         let scaleRatio = 80 / 100;
-        let {x, y, width, height} = this.getCropValues(
-            naturalWidth,
-            naturalHeight,
-            scaleRatio,
-            this.aspect,
-        );
+        let {x, y, width, height} = this.getCropValues(naturalWidth, naturalHeight, scaleRatio, this.aspect);
         while (width > scale || height > scale) {
             scaleRatio -= 0.02;
-            ({x, y, width, height} = this.getCropValues(
-                naturalWidth,
-                naturalHeight,
-                scaleRatio,
-                this.aspect,
-            ));
+            ({x, y, width, height} = this.getCropValues(naturalWidth, naturalHeight, scaleRatio, this.aspect));
         }
 
         const crop = {aspect: this.aspect, x, y, width, height};
@@ -89,7 +79,10 @@ class Cropper extends React.Component {
     }
 
     closeModal() {
-        const {pixelCrop: {x, y, width, height}, oldFile: {name, type, uid}} = this.state;
+        const {
+            pixelCrop: {x, y, width, height},
+            oldFile: {name, type, uid},
+        } = this.state;
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
@@ -102,11 +95,13 @@ class Cropper extends React.Component {
             const croppedFile = new File([blob], name, {type, lastModified: Date.now()});
             croppedFile.uid = uid;
             this.getBase64(croppedFile, imageUrl =>
-                this.setState({
-                    show: false,
-                    src: imageUrl
-                }, () => this.props.getCropImg(croppedFile)
-                )
+                this.setState(
+                    {
+                        show: false,
+                        src: imageUrl,
+                    },
+                    () => this.props.getCropImg(croppedFile),
+                ),
             );
         }, type);
     }
@@ -135,7 +130,7 @@ class Cropper extends React.Component {
             color: 'rgb(136, 136, 136)',
             fontSize: '50px',
             lineHeight: '70px',
-            textAlign: 'center'
+            textAlign: 'center',
         };
         const {src, crop, show} = this.state;
         return (
@@ -144,13 +139,16 @@ class Cropper extends React.Component {
                     type="file"
                     style={{display: 'none'}}
                     onChange={this.onSelectFile}
-                    ref={ref => this.uploadRef = ref}
+                    ref={ref => (this.uploadRef = ref)}
                 />
-                {
-                    src
-                        ? <img src={src} className='crop-img-btn' onClick={this.onSelectTriger} />
-                        : <div className='crop-img-btn' onClick={this.onSelectTriger}> + </div>
-                }
+                {src ? (
+                    <img src={src} className="crop-img-btn" onClick={this.onSelectTriger} />
+                ) : (
+                    <div className="crop-img-btn" onClick={this.onSelectTriger}>
+                        {' '}
+                        +{' '}
+                    </div>
+                )}
                 <Modal show={show} onOK={this.closeModal} onClose={this.closeModal}>
                     {src && (
                         <ReactCrop

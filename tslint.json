@@ -1,16 +1,25 @@
 {
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-airbnb",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "linterOptions": {
+    "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
+  },
   "rules": {
     "prettier": true,
     "file-name-casing": [
-      true,
-      "kebab-case"
+        true,
+        "kebab-case"
     ],
     "arrow-parens": false,
     "class-name": true,
     "indent": [
-      true,
-      "spaces",
-      6
+        true,
+        "spaces",
+        4
     ],
     "prefer-const": true,
     "prefer-method-signature": true,
@@ -23,84 +32,72 @@
     "no-invalid-template-strings": true,
     "no-object-literal-type-assertion": true,
     "one-line": [
-      true,
-      "check-open-brace",
-      "check-whitespace",
-      "check-catch",
-      "check-finally",
-      "check-else"
+        true,
+        "check-open-brace",
+        "check-whitespace",
+        "check-catch",
+        "check-finally",
+        "check-else"
     ],
     "no-invalid-this": [
-      true,
-      "check-function-in-method"
+        true,
+        "check-function-in-method"
     ],
     "no-return-await": true,
     "no-unused-expression": [
-      true,
-      "allow-fast-null-checks",
-      "allow-new",
-      "allow-tagged-template"
+        true,
+        "allow-fast-null-checks",
+        "allow-new",
+        "allow-tagged-template"
     ],
     "no-unnecessary-callback-wrapper": true,
     "no-construct": true,
     "no-string-throw": true,
     "object-literal-shorthand": true,
     "one-variable-per-declaration": [
-      true,
-      "ignore-for-loop"
+        true,
+        "ignore-for-loop"
     ],
     "deprecation": true,
     "arrow-return-shorthand": [false, "multiline"],
     "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
+        true,
+        "single",
+        "avoid-escape"
     ],
     "semicolon": [
-      true,
-      "always",
-      "ignore-interfaces"
+        true,
+        "always",
+        "ignore-interfaces"
     ],
     "trailing-comma": [
-      true,
-      "multiline"
+        true,
+        "multiline"
     ],
     "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
+        true,
+        {
+            "call-signature": "nospace",
+            "index-signature": "nospace",
+            "parameter": "nospace",
+            "property-declaration": "nospace",
+            "variable-declaration": "nospace"
+        }
     ],
     "variable-name": [
-      true,
-      "ban-keywords"
+        true,
+        "ban-keywords"
     ],
     "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type",
-      "check-type-operator"
+        true,
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-type-operator"
     ],
     "comment-format": [true, "check-space"]
-  },
-  "linterOptions": {
-    "exclude": [
-      "src/**/*.js",
-      "src/**/*.ts",
-      "src/**/*.jsx",
-      "src/**/*.tsx"
-    ]
-  },
-  "extends": [
-    "tslint:latest",
-    "tslint-config-alloy",
-    "tslint-config-prettier"
-  ]
+},
+  "rulesDirectory": ["tslint-plugin-prettier"]
 }

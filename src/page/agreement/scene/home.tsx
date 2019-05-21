@@ -5,7 +5,7 @@
  *@Date
  *@desc
  */
-import React, {Component} from 'react';
+import react, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 
@@ -13,7 +13,7 @@ import {Carousel} from '../../../components/common/carousel';
 import {Cropper} from '../../../components/common/cropper';
 import {CityPicker} from '../../../components/common/city-picker';
 
-class Home extends Component  {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,20 +26,20 @@ class Home extends Component  {
         this.OnCropImg = this.OnCropImg.bind(this);
     }
 
-    OnCropImg(crop) {
+    public OnCropImg(crop) {
         this.setState({crop});
     }
 
-    handleClick() {
+    public handleClick() {
         const {isShowing} = this.state;
         this.setState({isShowing: !isShowing});
     }
 
-    closePicker() {
+    public closePicker() {
         this.setState({isShowing: false});
     }
 
-    render() {
+    public render() {
         const {isShowing} = this.state;
 
         return (

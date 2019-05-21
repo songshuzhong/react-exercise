@@ -19,6 +19,17 @@
     "server": "node ./src/server/app.js",
     "precommit": "lint-staged"
   },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false,
+    "proseWrap": "always"
+  },
   "lint-staged": {
     "src/**/*.*(css|less|js|jsx|ts|tsx)": [
       "prettier --write",

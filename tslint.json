@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": ["tslint-plugin-prettier"],
+  "extends": ["tslint-plugin-prettier"],
   "rules": {
     "prettier": true,
     "file-name-casing": [

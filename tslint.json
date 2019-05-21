@@ -100,9 +100,6 @@
   },
   "extends": [
     "tslint:latest",
-    "tslint-config-airbnb",
-    "tslint-react",
-    "tslint-eslint-rules",
     "tslint-config-prettier"
   ]
 }

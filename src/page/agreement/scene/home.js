@@ -13,15 +13,14 @@ import {Carousel} from '../../../components/common/carousel';
 import {Cropper} from '../../../components/common/cropper';
 import {CityPicker} from '../../../components/common/city-picker';
 
-import '../../../styles/home.less';
-
-class Home extends Component {
+class Home extends Component  {
     constructor(props) {
         super(props);
         this.state = {
             crop: '',
             isShowing: false,
         };
+
         this.closePicker = this.closePicker.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.OnCropImg = this.OnCropImg.bind(this);

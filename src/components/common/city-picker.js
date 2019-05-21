@@ -14,7 +14,7 @@ import "../../styles/components/city-picker.less";
 export class CityPicker extends React.Component {
 
 
-  constructor(props) {
+  constructor(props)     {
     super(props);
     this.moveTarget = null;
     this.startY = 0;

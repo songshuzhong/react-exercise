@@ -6,12 +6,12 @@
  *@desc
  */
 import react, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
+import {Link} from 'react-router-dom';
 
 import {Carousel} from '../../../components/common/carousel';
-import {Cropper} from '../../../components/common/cropper';
 import {CityPicker} from '../../../components/common/city-picker';
+import {Cropper} from '../../../components/common/cropper';
 
 class Home extends Component {
     constructor(props) {

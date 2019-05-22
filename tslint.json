@@ -21,6 +21,7 @@
         "spaces",
         4
     ],
+    "jsdoc-format": true,
     "prefer-const": true,
     "prefer-method-signature": true,
     "no-duplicate-variable": true,
@@ -63,7 +64,7 @@
     "quotemark": [
         true,
         "single",
-        "avoid-escape"
+        "jsx-double"
     ],
     "semicolon": [
         true,

@@ -10,7 +10,7 @@ class HomeStore {
     }
 
     @action minus = () => {
-        setTimeout(() => this.number = --this.number, 2000);
+        setTimeout(() => (this.number = --this.number), 2000);
     };
 
     @action plus = () => {

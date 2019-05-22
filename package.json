@@ -19,6 +19,27 @@
     "server": "node ./src/server/app.js",
     "precommit": "lint-staged"
   },
+  "lint-staged": {
+    "src/**/*.*(css|less|js|jsx|ts|tsx)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "devDependencies": {
     "@babel/core": "7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",

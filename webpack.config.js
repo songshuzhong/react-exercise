@@ -23,7 +23,7 @@ let entry = {};
 let htmlPlugins = [];
 entry['basedep'] = ['react', 'mobx', 'mobx-react', '@babel/polyfill'];
 
-glob.sync('./src/page/*/index.js').forEach(entries => {
+glob.sync('./src/page/*/index.tsx').forEach(entries => {
     let pathname = entries.split('/').splice(-2).join('/').split('.')[0];
     entry[pathname] = ['@babel/polyfill', entries];
 });
@@ -117,7 +117,8 @@ let config = {
                             cacheCompression: prodMode,
                             compact: prodMode
                         }
-                    }
+                    },
+                    'ts-loader'
                 ]
             },
             {

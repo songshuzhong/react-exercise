@@ -19,38 +19,6 @@
     "server": "node ./src/server/app.js",
     "precommit": "lint-staged"
   },
-  "lint-staged": {
-    "src/**/*.*(css|less|js|jsx|ts|tsx)": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "printWidth": 120,
-    "tabWidth": 4,
-    "useTabs": false,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "bracketSpacing": false,
-    "jsxBracketSameLine": false,
-    "proseWrap": "always"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "devDependencies": {
     "@babel/core": "7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -69,16 +37,6 @@
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "ejs": "^2.6.1",
-    "eslint": "5.6.1",
-    "eslint-config-airbnb": "17.1.0",
-    "eslint-config-prettier": "3.1.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jest": "21.24.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-prettier": "2.7.0",
-    "eslint-plugin-react": "7.11.1",
-    "eslint-plugin-typescript": "0.12.0",
-    "eslint-plugin-unicorn": "6.0.1",
     "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-beta.3",
@@ -100,14 +58,10 @@
     "terser-webpack-plugin": "^1.2.3",
     "ts-loader": "^6.0.1",
     "tslint": "^5.11.0",
-    "tslint-config-airbnb": "^5.11.0",
-    "tslint-config-alloy": "^0.2.1",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-config-standard": "^8.0.1",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
-    "tslint-webpack-plugin": "^2.0.4",
-    "typescript-eslint-parser": "19.0.2",
+    "typescript": "^3.4.5",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
@@ -125,7 +79,6 @@
     "react-dom": "16.8.1",
     "react-image-crop": "^6.0.18",
     "react-router-dom": "^4.4.0",
-    "typescript": "^3.4.5",
     "webpack-bundle-analyzer": "^3.3.2"
   }
 }

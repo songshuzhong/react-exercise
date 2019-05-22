@@ -5,74 +5,78 @@
  *@Date
  *@desc
  */
-import react, {Component} from 'react';
-import {Helmet} from 'react-helmet';
-import {Link} from 'react-router-dom';
+import react, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
-import {Carousel} from '../../../components/common/carousel';
-import {CityPicker} from '../../../components/common/city-picker';
-import {Cropper} from '../../../components/common/cropper';
+import { Carousel } from "../../../components/common/carousel";
+import { CityPicker } from "../../../components/common/city-picker";
+import { Cropper } from "../../../components/common/cropper";
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            crop: '',
-            isShowing: false,
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      crop: "",
+      isShowing: false
+    };
 
-        this.closePicker = this.closePicker.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.OnCropImg = this.OnCropImg.bind(this);
-    }
+    this.closePicker = this.closePicker.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.OnCropImg = this.OnCropImg.bind(this);
+  }
 
-    public OnCropImg(crop) {
-        this.setState({crop});
-    }
+  OnCropImg(crop) {
+    this.setState({ crop });
+  }
 
-    public handleClick() {
-        const {isShowing} = this.state;
-        this.setState({isShowing: !isShowing});
-    }
+  handleClick() {
+    const { isShowing } = this.state;
+    this.setState({ isShowing: !isShowing });
+  }
 
-    public closePicker() {
-        this.setState({isShowing: false});
-    }
+  closePicker() {
+    this.setState({ isShowing: false });
+  }
 
-    public render() {
-        const {isShowing} = this.state;
+  render() {
+    const { isShowing } = this.state;
 
-        return (
-            <React.Fragment>
-                <Helmet key="helmet">
-                    <title>Home</title>
-                </Helmet>
-                <Carousel onClick={this.handleClick}>
-                    <div className="item">
-                        <img src="http://laichuanfeng.com/demo/carousel/carousel_1.jpg" />
-                    </div>
-                    <div className="item">
-                        <img src="http://laichuanfeng.com/demo/carousel/carousel_2.jpg" />
-                    </div>
-                    <div className="item">
-                        <img src="http://laichuanfeng.com/demo/carousel/carousel_3.jpg" />
-                    </div>
-                    <div className="item">
-                        <img src="http://laichuanfeng.com/demo/carousel/carousel_4.jpg" />
-                    </div>
-                    <div className="item">
-                        <img src="http://laichuanfeng.com/demo/carousel/carousel_5.jpg" />
-                    </div>
-                </Carousel>
-                <Cropper getCropImg={this.OnCropImg} />
-                <CityPicker show={isShowing} onOK={this.closePicker} onClose={this.closePicker} />
-                <Link key="link" to="/about">
-                    THIS IS HOME HOME.
-                </Link>
-            </React.Fragment>
-        );
-    }
+    return (
+      <React.Fragment>
+        <Helmet key="helmet">
+          <title>Home</title>
+        </Helmet>
+        <Carousel onClick={this.handleClick}>
+          <div className="item">
+            <img src="http://laichuanfeng.com/demo/carousel/carousel_1.jpg" />
+          </div>
+          <div className="item">
+            <img src="http://laichuanfeng.com/demo/carousel/carousel_2.jpg" />
+          </div>
+          <div className="item">
+            <img src="http://laichuanfeng.com/demo/carousel/carousel_3.jpg" />
+          </div>
+          <div className="item">
+            <img src="http://laichuanfeng.com/demo/carousel/carousel_4.jpg" />
+          </div>
+          <div className="item">
+            <img src="http://laichuanfeng.com/demo/carousel/carousel_5.jpg" />
+          </div>
+        </Carousel>
+        <Cropper getCropImg={this.OnCropImg} />
+        <CityPicker
+          show={isShowing}
+          onOK={this.closePicker}
+          onClose={this.closePicker}
+        />
+        <Link key="link" to="/about">
+          THIS IS HOME HOME.
+        </Link>
+      </React.Fragment>
+    );
+  }
 }
 
-export {Home};
+export { Home };
 export default Home;

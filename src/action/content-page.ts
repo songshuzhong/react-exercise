@@ -11,11 +11,11 @@ class HomeStore {
 
   @action minus = () => {
     setTimeout(() => (this.number = --this.number), 2000);
-  }
+  };
 
   @action plus = () => {
     this.number = ++this.number;
-  }
+  };
 }
 
 const homeStore = new HomeStore();

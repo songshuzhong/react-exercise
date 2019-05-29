@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<form>
+    用户名: <input type="file" multiple id="inputs"/>
+    <button id="submit">s</button>
+</form>
+<div id='dd'></div>
+
+<script>
+    $(document).ready(function () {
+        function reads(fil){
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function()
+            {
+                document.getElementById("dd").innerHTML += "<img src='"+reader.result+"'>";
+            };
+        }
+
+        $("#inputs").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+        $("#submit").click(function() {
+            var file = document.getElementById('inputs').files;
+            //新建一个FormData对象
+            var formData = new FormData();
+            //追加文件数据
+            for (i = 0; i < file.length; i++) {
+                formData.append("file[" + i + "]", file[i]);
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "test",
+                timeout: 30 * 1000,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(r) {
+                    alert('success');
+                },
+                error: function(r) {
+                    alert('error');
+                },
+                complete: function() {
+                    alert('complete');
+                }
+            })
+        });
+    });
+</script>
+</body>
+<html>

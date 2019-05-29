@@ -12,7 +12,11 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import "../../../styles/app.less";
 
-interface IProps {}
+interface IProps {
+  name?: string;
+  reciever?: string;
+  src?: string;
+}
 interface IState {
   images?: Array<any>;
   currentImg?: number;
@@ -35,6 +39,23 @@ class App extends React.Component<IProps, IState> {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleSaveModal = this.handleSaveModal.bind(this);
     this.handleSaveImages = this.handleSaveImages.bind(this);
+  }
+
+  componentDidMount() {
+    document.getElementById("carousel_warp").onmouseover = function(e) {
+      // @ts-ignore
+      if (e.target.className == "delete") {
+        // @ts-ignore
+        e.target.style.transform = "rotate(45deg)";
+      }
+    };
+    document.getElementById("carousel_warp").onmouseout = function(e) {
+      // @ts-ignore
+      if (e.target.className == "delete") {
+        // @ts-ignore
+        e.target.style.transform = "";
+      }
+    };
   }
 
   handlePushImage() {
@@ -75,7 +96,34 @@ class App extends React.Component<IProps, IState> {
     this.setState({ showDialog: false, images });
   }
 
-  handleSaveImages() {}
+  handleSaveImages() {
+    const { name, reciever } = this.props;
+    let { images } = this.state;
+    const formData = new FormData();
+    images = images.map(image => this.convertBase64UrlToBlob(image.src));
+
+    for (let i = 0; i < images.length; i++) {
+      formData.append("file[" + i + "]", images[i]);
+    }
+    // @ts-ignore
+    formData.append(name, images);
+    fetch(reciever, {
+      // @ts-ignore
+      data: formData
+    })
+      .then(r => console.log(r))
+      .catch(e => console.log(e.toString()));
+  }
+
+  convertBase64UrlToBlob(urlData) {
+    const bytes = window.atob(urlData.split(",")[1]);
+    const ab = new ArrayBuffer(bytes.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < bytes.length; i++) {
+      ia[i] = bytes.charCodeAt(i);
+    }
+    return new Blob([ab], { type: "image/png" });
+  }
 
   handleDeleteImage(index) {
     const { images } = this.state;
@@ -126,6 +174,7 @@ class App extends React.Component<IProps, IState> {
           </div>
         </div>
         <div
+          id="carousel_warp"
           style={{
             position: "absolute",
             width: "50%",
@@ -143,6 +192,18 @@ class App extends React.Component<IProps, IState> {
                 />
                 <div
                   className="delete"
+                  style={{
+                    position: "absolute",
+                    top: "24PX",
+                    right: "180PX",
+                    width: "30PX",
+                    height: "30PX",
+                    background: "rgba(255, 255, 255, 0.6)",
+                    borderRadius: "20PX",
+                    cursor: "pointer",
+                    fontSize: "25PX",
+                    lineHeight: "25PX"
+                  }}
                   onClick={this.handleDeleteImage.bind(this, index)}
                 >
                   +

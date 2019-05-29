@@ -14,8 +14,9 @@
     "node": ">=6.0.0"
   },
   "scripts": {
+    "lint": "tslint --fix --force -c ./tslint.json 'src/**/*.ts?(x)' && tslint -c ./tslint.json 'src/**/*.ts?(x)'",
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.59 --inline --content-base --config ./webpack.config.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.30 --inline --content-base public/ --config ./webpack.config.js",
     "server": "node ./src/server/app.js"
   },
   "lint-staged": {
@@ -53,6 +54,7 @@
     "@types/react-dom": "^16.8.0",
     "@types/react-router-dom": "^4.3.1",
     "babel-loader": "^8.0.5",
+    "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
@@ -72,6 +74,8 @@
     "postcss-preset-env": "^6.5.0",
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.17.1",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-cropper": "^1.2.0",
     "react-helmet": "^5.2.1",
     "script-loader": "^0.7.2",
     "style-loader": "^0.23.1",
@@ -88,6 +92,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "@baidu/haokan-build": "0.0.4",
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
     "husky": "^2.3.0",

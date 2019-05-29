@@ -1,0 +1,71 @@
+body {
+  background-color: yellowgreen;
+  div {
+    box-sizing: border-box;
+  }
+}
+
+.react_exercise_loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+}
+
+.react_exercise_loading:after {
+  content: '';
+  top: 0;
+  left: 0;
+  position: absolute;
+  border: 0 solid transparent;
+  border-left-color: #0c0;
+  border-top-color: #0c0;
+  animation: react_loading_transition 100ms;
+}
+
+@keyframes react_loading_transition {
+  from {
+    border-width: 0;
+  }
+  to {
+    border-width: 1000px;
+  }
+}
+.kf-copper_wrapper {
+  width: 100%;
+  padding: 10px;
+  .video {
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    div {
+      margin: 15px 35%;
+      height: 60px;
+      line-height: 60px;
+      background-color: #7266ba;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .copper{
+    position: absolute;
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+  }
+}
+.delete {
+  position: absolute;
+  top: 24PX;
+  right: 180PX;
+  width: 30PX;
+  height: 30PX;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20PX;
+  cursor: pointer;
+  font-size: 25PX;
+  line-height: 25PX;
+  &:hover {
+    transform: rotate(45deg);
+  }
+}

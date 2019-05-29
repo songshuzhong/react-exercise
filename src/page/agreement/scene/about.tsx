@@ -5,35 +5,41 @@
  *@Date
  *@desc
  */
-import React from 'react';
-import {Link} from 'react-router-dom';
-import Helmet from 'react-helmet';
+import React from "react";
+import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 
-import '../../../styles/about.css';
+import "../../../styles/about.css";
 
 class About extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <React.Fragment>
-                <Helmet key="helmet">
-                    <title>About</title>
-                </Helmet>
-                <Link key="link" to="/app">
-                    THIS IS ABOUT PAGE.
-                </Link>
-                <label>
-                    <input type="radio" name="type" id="adviceRadio1" value="1" hidden />
-                    <label htmlFor="adviceRadio1" className="advice" />
-                    <span className="radio-name">问题</span>
-                </label>
-            </React.Fragment>
-        );
-    }
+  render() {
+    return (
+      <React.Fragment>
+        <Helmet key="helmet">
+          <title>About</title>
+        </Helmet>
+        <Link key="link" to="/app">
+          THIS IS ABOUT PAGE.
+        </Link>
+        <label>
+          <input
+            type="radio"
+            name="type"
+            id="adviceRadio1"
+            value="1"
+            hidden={true}
+          />
+          <label htmlFor="adviceRadio1" className="advice" />
+          <span className="radio-name">问题</span>
+        </label>
+      </React.Fragment>
+    );
+  }
 }
 
-export {About};
+export { About };
 export default About;

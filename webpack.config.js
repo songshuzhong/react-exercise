@@ -84,9 +84,12 @@ let config = {
         chunkFilename: 'js/chunks/[name].[hash:6].chunk.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, 'output'),
+        contentBase: ['public', path.join(__dirname, 'output')],
         compress: true,
         port: 3000,
+        hot: true,
+        historyApiFallback: true,
+        headers: {'Access-Control-Allow-Origin': '*'}
     },
     externals: ['React', 'lodash'],
     resolve: {

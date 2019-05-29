@@ -1,9 +1,4 @@
 {
-    "extends": [
-        "tslint:recommended",
-        "tslint-react",
-        "tslint-config-prettier"
-      ],
   "linterOptions": {
     "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
   },
@@ -18,7 +13,7 @@
     "indent": [
         true,
         "spaces",
-        4 
+        4
     ],
     "jsdoc-format": true,
     "prefer-const": true,

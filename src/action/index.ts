@@ -1,4 +1,4 @@
-import homeStore from './content-page';
+import homeStore from "./content-page";
 
-export {homeStore};
+export { homeStore };
 export default homeStore;

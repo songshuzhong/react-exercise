@@ -111,7 +111,7 @@ export class Waterfull extends React.Component<IProps, IState> {
         const { height, children } = this.props;
         return (
             <div className='hk-waterfull-wrapper' style={{height: height}}>
-                <div className='waterfull-text' ref={ref => this.refreshError = ref}>抱歉，出错了。(ノへ`、)</div>
+                <div className='waterfull-text' ref={ref => this.refreshError = ref}>抱歉，刷新出错了。(ノへ`、)</div>
                 <div className='waterfull-text' ref={ref => this.refresh = ref}>{this.refreshText}</div>
                 <div className='waterfull-text' ref={ref => this.release = ref}>{this.releaseText}</div>
                 <div className='waterfull-content' ref={ref => this.wrapper = ref}>
@@ -119,7 +119,7 @@ export class Waterfull extends React.Component<IProps, IState> {
                 </div>
                 <div className='waterfull-text' ref={ref => this.loading = ref}>{this.loadingText}</div>
                 <div className='waterfull-text' ref={ref => this.hasNoMore = ref}>{this.hasNoMoreText}</div>
-                <div className='waterfull-text' ref={ref => this.loadError = ref}>抱歉，出错了。(ノへ`、)</div>
+                <div className='waterfull-text' ref={ref => this.loadError = ref}>抱歉，下载出错了。(ノへ`、)</div>
             </div>
         );
     }

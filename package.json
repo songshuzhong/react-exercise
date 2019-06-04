@@ -16,7 +16,7 @@
   "scripts": {
     "lint": "tslint --fix --force -c ./tslint.json 'src/**/*.ts?(x)' && tslint -c ./tslint.json 'src/**/*.ts?(x)'",
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.30 --inline --content-base public/ --config ./webpack.config.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.39 --inline --content-base public/ --config ./webpack.config.js",
     "server": "node ./src/server/app.js"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
     "@types/react-dom": "^16.8.0",
     "@types/react-router-dom": "^4.3.1",
     "babel-loader": "^8.0.5",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "3.3.7",
     "clean-webpack-plugin": "^1.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
@@ -45,6 +45,7 @@
     "image-webpack-loader": "^4.6.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -53,6 +54,7 @@
     "postcss-preset-env": "^6.5.0",
     "postcss-safe-parser": "^4.0.1",
     "prettier": "^1.17.1",
+    "raf": "^3.4.1",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-cropper": "^1.2.0",
     "react-helmet": "^5.2.1",

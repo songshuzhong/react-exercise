@@ -156,7 +156,7 @@ class App extends React.Component<IProps, IState> {
           >
             <source
               type="video/mp4"
-              src="http://172.22.148.30:3000/trailer_hd.mp4"
+              src="http://172.22.148.24:3000/trailer_hd.mp4"
             />
           </video>
           <div

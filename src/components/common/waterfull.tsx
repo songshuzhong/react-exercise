@@ -9,7 +9,9 @@ interface IProps {
     onLoadMore(disappear: Function, show: Function): any
 }
 
-interface IState {}
+interface IState {
+    pullHeight: number
+}
 
 export class Waterfull extends React.Component<IProps, IState> {
     private wrapper = null;
@@ -19,16 +21,15 @@ export class Waterfull extends React.Component<IProps, IState> {
     private hasNoMore = null;
     private loadError = null;
     private refreshError = null;
-    private sign = 0;
+    private startX = 0;
     private startY = 0;
-    private topStart = 0;
-    private topEnd = 0;
     private releaseText = '↑ 释放更新';
     private refreshText = '↓ 下拉刷新';
     private loadingText = '加载中......';
     private hasNoMoreText = '没有更多了';
     constructor(props) {
         super(props);
+        this.state = {pullHeight: 0};
         this.touchstartHandler = this.touchstartHandler.bind(this);
         this.touchmoveHandler = this.touchmoveHandler.bind(this);
         this.touchendHandeler = this.touchendHandeler.bind(this);
@@ -41,54 +42,68 @@ export class Waterfull extends React.Component<IProps, IState> {
     }
 
     touchstartHandler(e) {
-        this.startY = e.touches[0].pageY;
-        if (this.wrapper.style.transform) {
-            this.topStart = this.wrapper.style.transform
-                .split(",")[1]
-                .replace("px", "")
-                .trim();
-        }
+        const targetEvent = e.changedTouches[0];
+        this.startX = targetEvent.clientX;
+        this.startY = targetEvent.clientY;
     }
 
     touchmoveHandler(e) {
-        this.topEnd = e.touches[0].pageY - this.startY + Number(this.topStart);
+        const scrollTop = this.getScrollTop();
+        const scrollH = this.wrapper.scrollHeight;
+        const conH = this.wrapper.offsetHeight;
+        const targetEvent = e.changedTouches[0];
+        const curX = targetEvent.clientX;
+        const curY = targetEvent.clientY;
+        const diffX = curX - this.startX;
+        const diffY = curY - this.startY;
 
-        const dy = Math.abs(this.topEnd);
-        this.sign = this.topEnd / dy;
-
-        this.topEnd = dy > 150? 150: dy;
-        this.wrapper.style.transform =
-            "translate3d(0, " + this.sign * this.topEnd + "px, 0)";
-        this.props.triger(this.sign, this.topEnd);
-        if(this.sign > 0) {
-            e.preventDefault();
-            if (this.topEnd === 150) {
-                this.release.style.display = 'block';
-            } else {
-                this.refresh.style.display = 'block';
+        // 判断垂直移动距离是否大于5 && 横向移动距离小于纵向移动距离
+        if (Math.abs(diffY) > 5 && Math.abs(diffY) > Math.abs(diffX)) {
+            // 滚动距离小于设定值 &&回调onPullDownMove 函数，并且回传位置值
+            if (diffY > 5 && scrollTop < 1) {
+                // 阻止执行浏览器默认动作
+                event.preventDefault();
+                this.onPullDownMove([{
+                    touchStartY: this.startY,
+                    touchMoveY: curY
+                }]);
+            } else if (diffY < 0 && (scrollH - scrollTop - conH) < 1500) {
+                // 阻止执行浏览器默认动作
+                // event.preventDefault();
+                this.onPullUpMove([{
+                    touchStartY: this.startY,
+                    touchMoveY: curY
+                }]);
             }
-            this.refreshError.style.display = 'none';
-        } else {
-            this.loading.style.display = 'block';
         }
     }
 
     touchendHandeler(e) {
-        if (this.sign > 0) {
-            this.props.onRefresh(() => {
-                this.setNotification('');
-            }, () => {
-                this.setNotification('refreshError');
-            });
-        } else {
-            this.props.onLoadMore(() => {
-                this.setNotification('');
-            }, () => {
-                this.setNotification('loadError');
-            });
+        const scrollTop = this.getScrollTop();
+        const targetEvent = e.changedTouches[0];
+        const curX = targetEvent.clientX;
+        const curY = targetEvent.clientY;
+        const diffX = curX - this.startX;
+        const diffY = curY - this.startY;
+
+        // 判断垂直移动距离是否大于5 && 横向移动距离小于纵向移动距离
+        if (Math.abs(diffY) > 5 && Math.abs(diffY) > Math.abs(diffX)) {
+            if (diffY > 5 && scrollTop < 1) {
+                // 回调onPullDownRefresh 函数，即满足刷新条件
+                this.onPullDownRefresh();
+            }
         }
-        this.wrapper.style.transition = "0.3s cubic-bezier(0,0,0.2,1.15)";
-        this.wrapper.style.transform = "translate3d(0, 0, 0)";
+    }
+
+    getScrollTop = () => {
+        if (this.wrapper) {
+            if (this.wrapper === document.body) {
+                return document.documentElement.scrollTop || document.body.scrollTop;
+            }
+            return this.wrapper.scrollTop;
+        } else {
+            return 0;
+        }
     }
 
     setNotification = (type) => {
@@ -100,14 +115,67 @@ export class Waterfull extends React.Component<IProps, IState> {
         type === 'loadError' ? this.loadError.style.display = 'block' : this.loadError.style.display = 'none';
     }
 
+    // 拖拽的缓动公式 - easeOutSine
+    easing = (distance) => {
+        const t = distance;
+        const b = 0;
+        const d = screen.availHeight; // 允许拖拽的最大距离
+        const c = d / 2.5; // 提示标签最大有效拖拽距离
+
+        return c * Math.sin(t / d * (Math.PI / 2)) + b;
+    }
+
+    onPullDownMove = (data)  => {
+        let diff = data[0].touchMoveY - data[0].touchStartY;
+        if (diff < 0) {
+            diff = 0;
+        }
+        diff = this.easing(diff);
+        if (diff > 150) {
+            console.log('pulling enough');
+        } else {
+            console.log('pulling');
+        }
+        this.setState({
+            pullHeight: diff,
+        });
+        // this.props.handleAction(loaderState);
+    }
+
+    onPullUpMove = (data) => {
+        this.setState({
+            pullHeight: 0,
+        });
+        // this.props.handleAction(Switch.loading);
+    }
+
+    onPullDownRefresh = () => {
+        if (1) {
+            this.setState({pullHeight: 0});
+            // this.props.handleAction(Switch.reset);
+        } else {
+            this.setState({
+                pullHeight: 0,
+            });
+            // this.props.handleAction(Switch.refreshing);
+        }
+    }
+
     render() {
         const { height, children } = this.props;
+        const { pullHeight } = this.state;
+
+        const msgStyle = pullHeight ? {
+            WebkitTransform: `translate3d(0, ${pullHeight}px, 0)`,
+            transform: `translate3d(0, ${pullHeight}px, 0)`
+        } : null;
+
         return (
             <div className='hk-waterfull-wrapper' style={{height: height}}>
                 <div className='waterfull-text' ref={ref => this.refreshError = ref}>抱歉，刷新出错了。(ノへ`、)</div>
                 <div className='waterfull-text' ref={ref => this.refresh = ref}>{this.refreshText}</div>
                 <div className='waterfull-text' ref={ref => this.release = ref}>{this.releaseText}</div>
-                <div className='waterfull-content' ref={ref => this.wrapper = ref}>
+                <div className='waterfull-content' ref={ref => this.wrapper = ref} style={msgStyle}>
                     { children }
                 </div>
                 <div className='waterfull-text' ref={ref => this.loading = ref}>{this.loadingText}</div>

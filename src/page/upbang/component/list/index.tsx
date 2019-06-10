@@ -4,6 +4,7 @@ import { UpbangAction } from '../../../../action/upbang';
 import { UpbangStore } from '../../../../store/upbang';
 
 import { Waterfull } from '../../../../components/common/waterfull';
+import { Block } from '../block';
 
 import './index.less';
 
@@ -55,7 +56,7 @@ export class List extends React.Component<Props, any> {
             <div className='hk-list-wrapper'>
                 <Waterfull height='calc(100vh - 138px)' onLoadMore={this.loadMore} onRefresh={this.refresh} triger={this.props.triger}>
                     {
-                        list ? list.map((item, index) => <h5 key={index}>{item}</h5>) : null
+                        list ? list.map((item, index) => <Block key={index} index={index} block={item} />) : null
                     }
                 </Waterfull>
             </div>

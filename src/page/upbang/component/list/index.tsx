@@ -18,7 +18,7 @@ export class List extends React.Component<Props, any> {
     constructor(props) {
         super(props);
         this.state = {
-            list: ['这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item']
+            list: ['这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item', '这是第1个Item']
         };
         this.loadMore = this.loadMore.bind(this);
         this.refresh = this.refresh.bind(this);

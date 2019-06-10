@@ -41,8 +41,6 @@ export class Waterfull extends React.Component<IProps, IState> {
     }
 
     touchstartHandler(e) {
-        e.stopPropagation();
-        e.preventDefault();
         this.startY = e.touches[0].pageY;
         if (this.wrapper.style.transform) {
             this.topStart = this.wrapper.style.transform
@@ -53,8 +51,6 @@ export class Waterfull extends React.Component<IProps, IState> {
     }
 
     touchmoveHandler(e) {
-        e.stopPropagation();
-        e.preventDefault();
         this.topEnd = e.touches[0].pageY - this.startY + Number(this.topStart);
 
         const dy = Math.abs(this.topEnd);
@@ -65,8 +61,8 @@ export class Waterfull extends React.Component<IProps, IState> {
             "translate3d(0, " + this.sign * this.topEnd + "px, 0)";
         this.props.triger(this.sign, this.topEnd);
         if(this.sign > 0) {
+            e.preventDefault();
             if (this.topEnd === 150) {
-                this.refresh.style.display = 'none';
                 this.release.style.display = 'block';
             } else {
                 this.refresh.style.display = 'block';
@@ -74,37 +70,34 @@ export class Waterfull extends React.Component<IProps, IState> {
             this.refreshError.style.display = 'none';
         } else {
             this.loading.style.display = 'block';
-            this.loadError.style.display = 'none';
         }
     }
 
     touchendHandeler(e) {
-        e.stopPropagation();
-        e.preventDefault();
-
         if (this.sign > 0) {
             this.props.onRefresh(() => {
-                this.refresh.style.display = 'none';
-                this.release.style.display = 'none';
-                this.loadError.style.display = 'none';
-                this.refreshError.style.display = 'none';
+                this.setNotification('');
             }, () => {
-                this.refresh.style.display = 'none';
-                this.release.style.display = 'none';
-                this.refreshError.style.display = 'block';
+                this.setNotification('refreshError');
             });
         } else {
             this.props.onLoadMore(() => {
-                this.loading.style.display = 'none';
-                this.loadError.style.display = 'none';
-                this.refreshError.style.display = 'none';
+                this.setNotification('');
             }, () => {
-                this.loading.style.display = 'none';
-                this.loadError.style.display = 'block';
+                this.setNotification('loadError');
             });
         }
         this.wrapper.style.transition = "0.3s cubic-bezier(0,0,0.2,1.15)";
         this.wrapper.style.transform = "translate3d(0, 0, 0)";
+    }
+
+    setNotification = (type) => {
+        type === 'refreshError' ? this.refreshError.style.display = 'block' : this.refreshError.style.display = 'none';
+        type === 'refresh' ? this.refresh.style.display = 'block' : this.refresh.style.display = 'none';
+        type === 'release' ? this.release.style.display = 'block' : this.release.style.display = 'none';
+        type === 'loading' ? this.loading.style.display = 'block' : this.loading.style.display = 'none';
+        type === 'hasNoMore' ? this.hasNoMore.style.display = 'block' : this.hasNoMore.style.display = 'none';
+        type === 'loadError' ? this.loadError.style.display = 'block' : this.loadError.style.display = 'none';
     }
 
     render() {

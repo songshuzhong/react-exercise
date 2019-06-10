@@ -16,7 +16,7 @@
   "scripts": {
     "lint": "tslint --fix --force -c ./tslint.json 'src/**/*.ts?(x)' && tslint -c ./tslint.json 'src/**/*.ts?(x)'",
     "build": "cross-env NODE_ENV=production webpack --display-modules --diplay-chunks --colors --progress --config webpack.config.js",
-    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.39 --inline --content-base public/ --config ./webpack.config.js",
+    "watch": "set NODE_ENV=development&&webpack-dev-server --host 172.22.148.22 --inline --content-base public/ --config ./webpack.config.js",
     "server": "node ./src/server/app.js"
   },
   "devDependencies": {
